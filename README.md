@@ -35,7 +35,7 @@ Game edukatif interaktif untuk belajar Python dasar dengan cara yang menyenangka
 - Prism.js (syntax highlighting)
 
 ## 👨‍💻 Dibuat oleh:
-[Your Name]
+[IRKHAM]
 
 ## 📄 Lisensi:
-MIT License
+Beluma ada(kalo mau di copy monggo saja)
