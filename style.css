@@ -1,1 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+h1 {
+    color: #FFD700;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.xp-bar-container {
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.xp-bar {
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    height: 20px;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+    width: 0%;
+}
+
+.xp-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.level-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.level-btn {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    position: relative;
+}
+
+.level-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.level-btn.active {
+    background: #4CAF50;
+    border-color: #45a049;
+}
+
+.level-btn.completed {
+    background: #2196F3;
+    border-color: #1976D2;
+}
+
+.level-btn .progress-circle {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mission {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.mission h3 {
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.editor-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.editor-toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.editor-toolbar button {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editor-toolbar button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.editor-wrapper {
+    position: relative;
+}
+
+textarea#code-editor {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    margin-bottom: 15px;
+    min-height: 200px;
+    tab-size: 4;
+}
+
+.button-group {
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.special-btn {
+    background: #FF6B6B;
+}
+
+.special-btn:hover {
+    background: #FF5252;
+}
+
+.hint-btn {
+    background: #FFD93D;
+    color: #333;
+}
+
+.hint-btn:hover {
+    background: #FFC000;
+}
+
+#output {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    min-height: 80px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    color: #00FF00;
+}
+
+.error-output {
+    color: #FF6B6B !important;
+}
+
+.hint {
+    background: rgba(255,255,0,0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.badge {
+    background: rgba(255,255,255,0.1);
+    border: 2px dashed rgba(255,255,255,0.3);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 100px;
+    opacity: 0.5;
+}
+
+.badge.earned {
+    background: rgba(255,215,0,0.2);
+    border: 2px solid gold;
+    opacity: 1;
+}
+
+.story {
+    background: rgba(0,255,0,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #FFD700;
+}
+
+.quiz-container {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: none;
+}
+
+.quiz-question {
+    margin-bottom: 15px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quiz-option {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz-option:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.quiz-option.selected {
+    background: #4CAF50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .player-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    textarea#code-editor {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
