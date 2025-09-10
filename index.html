@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐍 Python Adventure - Game Edukatif</title>
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .game-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 800px;
+      margin: 20px auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+    
+    h1 {
+      color: #FFD700;
+      margin-bottom: 10px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .player-info {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .xp-bar-container {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      margin: 10px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .xp-bar {
+      background: linear-gradient(90deg, #4CAF50, #8BC34A);
+      height: 20px;
+      border-radius: 10px;
+      transition: width 1s ease-in-out;
+      width: 0%;
+    }
+    
+    .xp-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      line-height: 20px;
+      color: white;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    }
+    
+    .level-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+    
+    .level-btn {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+      position: relative;
+    }
+    
+    .level-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    
+    .level-btn.active {
+      background: #4CAF50;
+      border-color: #45a049;
+    }
+    
+    .level-btn.completed {
+      background: #2196F3;
+      border-color: #1976D2;
+    }
+    
+    .level-btn .progress-circle {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background: #FFD700;
+      border-radius: 50%;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .mission {
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .mission h3 {
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    
+    /* Syntax Highlighting Editor */
+    .editor-container {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    
+    .editor-toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .editor-toolbar button {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .editor-toolbar button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .editor-wrapper {
+      position: relative;
+    }
+    
+    textarea#code-editor {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      background: rgba(0,0,0,0.2);
+      color: white;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      margin-bottom: 15px;
+      min-height: 200px;
+      tab-size: 4;
+    }
+    
+    .button-group {
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    
+    button:hover {
+      background: #45a049;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    button:disabled {
+      background: #666;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .special-btn {
+      background: #FF6B6B;
+    }
+    
+    .special-btn:hover {
+      background: #FF5252;
+    }
+    
+    .hint-btn {
+      background: #FFD93D;
+      color: #333;
+    }
+    
+    .hint-btn:hover {
+      background: #FFC000;
+    }
+    
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      min-height: 80px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      color: #00FF00;
+    }
+    
+    .error-output {
+      color: #FF6B6B !important;
+    }
+    
+    .hint {
+      background: rgba(255,255,0,0.2);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 2px dashed rgba(255,255,255,0.3);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 100px;
+      opacity: 0.5;
+    }
+    
+    .badge.earned {
+      background: rgba(255,215,0,0.2);
+      border: 2px solid gold;
+      opacity: 1;
+    }
+    
+    .story {
+      background: rgba(0,255,0,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #FFD700;
+    }
+    
+    .quiz-container {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      display: none;
+    }
+    
+    .quiz-question {
+      margin-bottom: 15px;
+    }
+    
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .quiz-option {
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .quiz-option:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .quiz-option.selected {
+      background: #4CAF50;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .game-container {
+        padding: 15px;
+        margin: 10px;
+      }
+      
+      .player-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      textarea#code-editor {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="header">
+      <h1>🐍 Python Adventure</h1>
+      <p>Belajar Python Sambil Berpetualang!</p>
+    </div>
+    
+    <div class="loading" id="loading">
+      🚀 Memuat Python Engine... Mohon tunggu sebentar
+    </div>
+    
+    <div id="game-content" style="display: none;">
+      <div class="player-info">
+        <div>
+          <h3>Pemain: <span id="player-name">Petualang Python</span></h3>
+          <p>Level: <span id="current-level">1</span></p>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <p>XP: <span id="current-xp">0</span>/<span id="max-xp">100</span></p>
+          <div class="xp-bar-container">
+            <div class="xp-bar" id="xp-bar"></div>
+            <div class="xp-text" id="xp-text">0/100 XP</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="badge-container" id="badges">
+        <!-- Badges akan ditambahkan dinamis -->
+      </div>
+      
+      <div class="story" id="story">
+        Kamu adalah seorang petualang muda yang menemukan buku sihir kuno. Di dalamnya tertulis tentang bahasa pemrograman Python...
+      </div>
+      
+      <div class="level-selector" id="level-selector">
+        <!-- Level buttons akan ditambahkan dinamis -->
+      </div>
+      
+      <div class="mission" id="mission">
+        <h3 id="mission-title">🎯 Misi: Kenalan dengan Variabel</h3>
+        <p id="mission-desc">Karakter kamu butuh nama supaya bisa dikenali. Gunakan variabel untuk menyimpan namanya!</p>
+        
+        <div id="examples" class="hint">
+          <strong>Contoh:</strong><br>
+          nama = "Budi"<br>
+          print("Halo, " + nama)
+        </div>
+      </div>
+      
+      <div class="editor-container">
+        <div class="editor-toolbar">
+          <button onclick="resetCode()" title="Reset ke contoh awal">🔄 Reset</button>
+          <button onclick="showHint()" class="hint-btn" title="Dapatkan petunjuk">💡 Hint</button>
+          <button onclick="exportCode()" title="Download kode sebagai .py">💾 Export</button>
+          <button onclick="showQuiz()" title="Quiz setelah level">❓ Quiz</button>
+        </div>
+        
+        <div class="editor-wrapper">
+          <textarea id="code-editor" placeholder="Tulis kode Python di sini..." spellcheck="false">nama = "Budi"
+print("Halo, " + nama)</textarea>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button onclick="runCode()" id="run-btn">🚀 Jalankan Kode (Ctrl+Enter)</button>
+        <button class="special-btn" onclick="showChallenge()">⚔️ Tantangan Spesial</button>
+      </div>
+      
+      <div id="output">🎮 Output akan muncul di sini...</div>
+      
+      <div class="quiz-container" id="quiz-container">
+        <h3>❓ Quiz Cepat</h3>
+        <div id="quiz-content"></div>
+        <button onclick="submitQuiz()" style="margin-top: 15px;">Submit Jawaban</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  
+  <!-- Prism.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  
+  <script>
+    // Data Game
+    const gameData = {
+      currentLevel: 1,
+      xp: 0,
+      badges: [],
+      achievements: [],
+      completedLevels: [],
+      playerName: "Petualang Python",
+      codeHistory: {}
+    };
+    
+    // Level Definitions
+    const levels = {
+      1: {
+        title: "🎯 Misi: Kenalan dengan Variabel",
+        desc: "Karakter kamu butuh nama supaya bisa dikenali. Gunakan variabel untuk menyimpan namanya!",
+        examples: "nama = \"Budi\"\nprint(\"Halo, \" + nama)",
+        story: "Kamu menemukan sebuah gua rahasia. Di dindingnya tertulis tentang 'variabel' - tempat menyimpan nilai!",
+        badge: "🏆 Variabel Master",
+        defaultCode: "nama = \"Budi\"\nprint(\"Halo, \" + nama)",
+        hints: [
+          "Gunakan tanda = untuk menyimpan nilai dalam variabel",
+          "Gunakan tanda kutip untuk teks (string)",
+          "Gunakan print() untuk menampilkan hasil"
+        ],
+        quiz: {
+          question: "Apa itu variabel dalam Python?",
+          options: [
+            "Fungsi untuk mencetak teks",
+            "Tempat menyimpan nilai/data",
+            "Perintah untuk mengulang",
+            "Tipe data boolean"
+          ],
+          correct: 1
+        }
+      },
+      2: {
+        title: "🕵️‍♂️ Misi: Detektif Tipe Data",
+        desc: "Kamu adalah detektif yang harus mengidentifikasi tipe data dari berbagai nilai. Gunakan fungsi type() untuk mengecek tipe data!",
+        examples: "nama = \"Andi\"\numur = 13\nsiswa = True\nprint(type(nama))\nprint(type(umur))\nprint(type(siswa))",
+        story: "Setelah memahami variabel, kamu menemukan buku sihir tentang berbagai 'tipe data' yang bisa disimpan!",
+        badge: "🔍 Tipe Data Detective",
+        defaultCode: "nama = \"Andi\"\numur = 13\nsiswa = True\nprint(type(nama))\nprint(type(umur))\nprint(type(siswa))",
+        hints: [
+          "String ditulis dengan tanda kutip",
+          "Integer adalah angka bulat tanpa kutip",
+          "Boolean hanya bisa True atau False"
+        ],
+        quiz: {
+          question: "Tipe data apa yang digunakan untuk angka bulat?",
+          options: [
+            "string",
+            "float",
+            "integer",
+            "boolean"
+          ],
+          correct: 2
+        }
+      },
+      3: {
+        title: "💰 Misi: Kalkulator Petualangan",
+        desc: "Kamu sedang mengumpulkan koin dalam petualangan! Gunakan operasi matematika untuk menghitung total koinmu.",
+        examples: "koin_level1 = 25\nkoin_level2 = 30\nbonus = 10\n\ntotal = koin_level1 + koin_level2 + bonus\nprint(\"Total koin: \" + str(total))",
+        story: "Di hutan ajaib, kamu menemukan peti harta karun yang membutuhkan kemampuan matematika untuk dibuka!",
+        badge: "🧮 Math Wizard",
+        defaultCode: "koin_level1 = 25\nkoin_level2 = 30\nbonus = 10\n\ntotal = koin_level1 + koin_level2 + bonus\nprint(\"Total koin: \" + str(total))",
+        hints: [
+          "Gunakan + untuk penjumlahan",
+          "Gunakan str() untuk mengubah angka jadi teks",
+          "Gunakan * untuk perkalian"
+        ],
+        quiz: {
+          question: "Apa hasil dari 10 + 5 * 2?",
+          options: [
+            "30",
+            "20",
+            "15",
+            "25"
+          ],
+          correct: 1
+        }
+      },
+      4: {
+        title: "🧭 Misi: Membuat Keputusan",
+        desc: "Kamu sedang di depan pintu rahasia! Gunakan kondisi untuk memutuskan jalan yang harus diambil.",
+        examples: "umur = 15\nkunci = True\n\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
+        story: "Kamu sampai di persimpangan jalan. Hanya dengan logika yang tepat kamu bisa memilih jalan yang benar!",
+        badge: "⚖️ Logic Master",
+        defaultCode: "umur = 15\nkunci = True\n\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
+        hints: [
+          "Gunakan if untuk kondisi yang benar",
+          "Gunakan else untuk kondisi lainnya",
+          "Gunakan and/or untuk kombinasi kondisi"
+        ],
+        quiz: {
+          question: "Apa output dari: if 5 > 3: print('Benar') else: print('Salah')",
+          options: [
+            "Salah",
+            "Benar",
+            "Error",
+            "Tidak ada output"
+          ],
+          correct: 1
+        }
+      },
+      5: {
+        title: "🔁 Misi: Mengulang Tugas",
+        desc: "Kamu harus mengumpulkan 5 koin emas! Gunakan perulangan untuk mengulang proses pengumpulan.",
+        examples: "for i in range(5):\n    print(\"Mengumpulkan koin ke-\" + str(i+1))",
+        story: "Di menara sihir, kamu harus melakukan ritual berulang kali untuk mendapatkan kekuatan baru!",
+        badge: "🔄 Loop Champion",
+        defaultCode: "for i in range(5):\n    print(\"Mengumpulkan koin ke-\" + str(i+1))",
+        hints: [
+          "Gunakan for untuk perulangan yang diketahui jumlahnya",
+          "range(n) membuat urutan 0 sampai n-1",
+          "Gunakan str() untuk menggabungkan angka dan teks"
+        ],
+        quiz: {
+          question: "Berapa kali perulangan ini dijalankan: for i in range(3): print(i)",
+          options: [
+            "2 kali",
+            "3 kali",
+            "4 kali",
+            "1 kali"
+          ],
+          correct: 1
+        }
+      },
+      6: {
+        title: "⚙️ Misi: Membuat Blok Kode",
+        desc: "Kamu adalah penyihir yang bisa membuat mantra! Setiap mantra adalah fungsi yang bisa digunakan berulang kali.",
+        examples: "def sapa(nama):\n    print(\"Halo, \" + nama + \"! Selamat datang di petualangan!\")\n\nsapa(\"Andi\")\nsapa(\"Budi\")",
+        story: "Kamu belajar membuat 'mantra' sihir yang bisa digunakan kapan saja - seperti fungsi dalam Python!",
+        badge: "🔧 Function Wizard",
+        defaultCode: "def sapa(nama):\n    print(\"Halo, \" + nama + \"! Selamat datang di petualangan!\")\n\nsapa(\"Andi\")\nsapa(\"Budi\")",
+        hints: [
+          "Gunakan def untuk membuat fungsi",
+          "Gunakan parameter untuk input fungsi",
+          "Panggil fungsi dengan nama_fungsi(parameter)"
+        ],
+        quiz: {
+          question: "Apa fungsi dari kata kunci 'def'?",
+          options: [
+            "Mendefinisikan variabel",
+            "Mendefinisikan fungsi",
+            "Menghapus fungsi",
+            "Memanggil fungsi"
+          ],
+          correct: 1
+        }
+      }
+    };
+    
+    // Badges
+    const badges = [
+      "🏆 Variabel Master",
+      "🔍 Tipe Data Detective", 
+      "🧮 Math Wizard",
+      "⚖️ Logic Master",
+      "🔄 Loop Champion",
+      "🔧 Function Wizard",
+      "💎 Python Pro"
+    ];
+    
+    // Achievements
+    const achievements = [
+      "🎯 First Code", // Jalankan kode pertama kali
+      "💥 Error Hunter", // Dapatkan 5 error
+      "⚡ Speed Coder", // Jalankan kode < 5 detik setelah load
+      "📚 Quiz Master", // Jawab 5 quiz benar
+      "🔁 Loop Expert", // Gunakan loop 10x
+      "🔧 Function Fan" // Buat 5 fungsi
+    ];
+    
+    // Pyodide instance
+    let pyodide = null;
+    
+    // Initialize Game
+    async function initGame() {
+      try {
+        // Load Pyodide
+        pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+        });
+        
+        // Hide loading, show game
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('game-content').style.display = 'block';
+        
+        loadGame();
+        updateUI();
+        setupLevelButtons();
+        updateLevelContent();
+        
+        // Setup keyboard shortcuts
+        setupKeyboardShortcuts();
+        
+      } catch (error) {
+        console.error("Error loading Pyodide:", error);
+        document.getElementById('loading').innerHTML = "❌ Error memuat Python Engine. Silakan refresh halaman.";
+      }
+    }
+    
+    // Setup keyboard shortcuts
+    function setupKeyboardShortcuts() {
+      document.addEventListener('keydown', function(e) {
+        // Ctrl+Enter to run code
+        if (e.ctrlKey && e.key === 'Enter') {
+          e.preventDefault();
+          runCode();
+        }
+        
+        // Ctrl+Z for undo
+        if (e.ctrlKey && e.key === 'z') {
+          document.execCommand('undo', false, null);
+        }
+        
+        // Ctrl+Y for redo
+        if (e.ctrlKey && e.key === 'y') {
+          document.execCommand('redo', false, null);
+        }
+      });
+    }
+    
+    // Load Game Data
+    function loadGame() {
+      const saved = localStorage.getItem('pythonAdventure');
+      if (saved) {
+        Object.assign(gameData, JSON.parse(saved));
+      }
+    }
+    
+    // Save Game Data
+    function saveGame() {
+      localStorage.setItem('pythonAdventure', JSON.stringify(gameData));
+    }
+    
+    // Update UI
+    function updateUI() {
+      document.getElementById('current-level').textContent = gameData.currentLevel;
+      document.getElementById('current-xp').textContent = gameData.xp;
+      document.getElementById('max-xp').textContent = getNextLevelXP();
+      
+      const xpPercent = (gameData.xp / getNextLevelXP()) * 100;
+      document.getElementById('xp-bar').style.width = xpPercent + '%';
+      document.getElementById('xp-text').textContent = gameData.xp + '/' + getNextLevelXP() + ' XP';
+      
+      updateBadges();
+    }
+    
+    // Get XP needed for next level
+    function getNextLevelXP() {
+      return gameData.currentLevel * 100;
+    }
+    
+    // Update Badges Display
+    function updateBadges() {
+      const badgeContainer = document.getElementById('badges');
+      badgeContainer.innerHTML = '';
+      
+      badges.forEach(badge => {
+        const badgeEl = document.createElement('div');
+        badgeEl.className = 'badge';
+        if (gameData.badges.includes(badge)) {
+          badgeEl.classList.add('earned');
+        }
+        badgeEl.textContent = badge;
+        badgeContainer.appendChild(badgeEl);
+      });
+    }
+    
+    // Setup Level Buttons
+    function setupLevelButtons() {
+      const selector = document.getElementById('level-selector');
+      selector.innerHTML = '';
+      
+      for (let i = 1; i <= 6; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'level-btn';
+        btn.textContent = 'Level ' + i;
+        btn.onclick = () => selectLevel(i);
+        
+        if (i === gameData.currentLevel) {
+          btn.classList.add('active');
+        }
+        if (gameData.completedLevels.includes(i)) {
+          btn.classList.add('completed');
+        }
+        
+        // Add progress indicator
+        if (gameData.completedLevels.includes(i)) {
+          const progressCircle = document.createElement('div');
+          progressCircle.className = 'progress-circle';
+          progressCircle.textContent = '✓';
+          btn.appendChild(progressCircle);
+        }
+        
+        selector.appendChild(btn);
+      }
+    }
+    
+    // Select Level
+    function selectLevel(level) {
+      gameData.currentLevel = level;
+      updateUI();
+      setupLevelButtons();
+      updateLevelContent();
+      saveGame();
+    }
+    
+    // Update Level Content
+    function updateLevelContent() {
+      const level = levels[gameData.currentLevel];
+      if (!level) return;
+      
+      document.getElementById('mission-title').textContent = level.title;
+      document.getElementById('mission-desc').textContent = level.desc;
+      document.getElementById('examples').innerHTML = '<strong>Contoh:</strong><br>' + level.examples.replace(/\n/g, '<br>');
+      document.getElementById('story').textContent = level.story;
+      
+      // Set default code based on level
+      document.getElementById('code-editor').value = level.defaultCode;
+      
+      // Hide quiz
+      document.getElementById('quiz-container').style.display = 'none';
+    }
+    
+    // Reset Code to Default
+    function resetCode() {
+      const level = levels[gameData.currentLevel];
+      if (level) {
+        document.getElementById('code-editor').value = level.defaultCode;
+      }
+    }
+    
+    // Show Hint
+    function showHint() {
+      const level = levels[gameData.currentLevel];
+      if (level && level.hints) {
+        const randomHint = level.hints[Math.floor(Math.random() * level.hints.length)];
+        alert("💡 Petunjuk: " + randomHint);
+      }
+    }
+    
+    // Export Code
+    function exportCode() {
+      const code = document.getElementById('code-editor').value;
+      const blob = new Blob([code], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'python_adventure_level' + gameData.currentLevel + '.py';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    
+    // ✅ SISTEM EKSEKUSI PYTHON YANG BENAR
+    async function runCode() {
+      const code = document.getElementById("code-editor").value;
+      const output = document.getElementById("output");
+      const runBtn = document.getElementById("run-btn");
+      
+      // Disable button while running
+      runBtn.disabled = true;
+      runBtn.textContent = "⏳ Menjalankan...";
+      output.innerHTML = "🎮 Menjalankan kode...";
+      output.className = ""; // Reset error class
+      
+      try {
+        // Simulate loading animation
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Capture Python output
+        let outputBuffer = "";
+        
+        // Override print function to capture output
+        pyodide.runPython(`
+import sys
+from js import console
+
+class OutputCapture:
+    def __init__(self):
+        self.buffer = ""
+    
+    def write(self, text):
+        self.buffer += text
+        return len(text)
+    
+    def flush(self):
+        pass
+
+sys.stdout = OutputCapture()
+        `);
+        
+        // Run the user code
+        pyodide.runPython(code);
+        
+        // Get the captured output
+        const capturedOutput = pyodide.globals.get('sys').stdout.buffer;
+        
+        if (capturedOutput && capturedOutput.length > 0) {
+          output.innerHTML = "✅ " + capturedOutput;
+        } else {
+          output.innerHTML = "ℹ️ Kode dijalankan tanpa output";
+        }
+        
+        // Give XP for successful execution
+        giveXP(20);
+        
+        // Achievement: First Code
+        if (!gameData.achievements.includes("🎯 First Code")) {
+          gameData.achievements.push("🎯 First Code");
+          alert("🏆 Achievement Unlocked: First Code!");
+        }
+        
+      } catch (error) {
+        output.innerHTML = "❌ Error:\n" + error.message;
+        output.className = "error-output";
+        
+        // Achievement: Error Hunter
+        if (!gameData.achievements.includes("💥 Error Hunter")) {
+          // Count errors (simplified)
+          if (Math.random() > 0.7) { // Simulate error counting
+            gameData.achievements.push("💥 Error Hunter");
+            alert("🏆 Achievement Unlocked: Error Hunter!");
+          }
+        }
+      } finally {
+        // Re-enable button
+        runBtn.disabled = false;
+        runBtn.textContent = "🚀 Jalankan Kode (Ctrl+Enter)";
+      }
+    }
+    
+    // Give XP
+    function giveXP(amount) {
+      gameData.xp += amount;
+      const nextLevelXP = getNextLevelXP();
+      
+      if (gameData.xp >= nextLevelXP) {
+        levelUp();
+      }
+      
+      // Mark level as completed
+      if (!gameData.completedLevels.includes(gameData.currentLevel)) {
+        gameData.completedLevels.push(gameData.currentLevel);
+        const badge = levels[gameData.currentLevel].badge;
+        if (badge && !gameData.badges.includes(badge)) {
+          gameData.badges.push(badge);
+          alert("🏆 Badge Unlocked: " + badge);
+        }
+      }
+      
+      updateUI();
+      setupLevelButtons();
+      saveGame();
+    }
+    
+    // Level Up
+    function levelUp() {
+      gameData.currentLevel++;
+      gameData.xp = 0;
+      
+      if (gameData.currentLevel > 6) {
+        gameData.currentLevel = 6;
+        if (!gameData.badges.includes("💎 Python Pro")) {
+          gameData.badges.push("💎 Python Pro");
+          alert("🏆 Ultimate Badge Unlocked: Python Pro!");
+        }
+      }
+      
+      alert("🎉 Level Up! Kamu sekarang di Level " + gameData.currentLevel);
+      updateLevelContent();
+    }
+    
+    // Show Challenge
+    function showChallenge() {
+      const challenges = {
+        1: "🎯 Tantangan: Buat variabel untuk menyimpan nama, umur, dan hobi kamu, lalu tampilkan semua dengan print()",
+        2: "⚔️ Tantangan: Buat 3 variabel dengan tipe data berbeda (string, integer, boolean) dan cek tipe datanya",
+        3: "💰 Tantangan: Hitung total belanja dengan diskon 10% jika total > 100000",
+        4: "🧭 Tantangan: Buat sistem penilaian (A, B, C, D, E) berdasarkan nilai angka",
+        5: "🔁 Tantangan: Buat countdown dari 10 ke 0 menggunakan while loop",
+        6: "⚙️ Tantangan: Buat fungsi untuk menghitung luas persegi panjang dan lingkaran"
+      };
+      
+      const output = document.getElementById("output");
+      output.innerHTML = "⚔️ " + challenges[gameData.currentLevel] || "⚔️ Tantangan spesial untuk level ini!";
+      output.className = ""; // Reset error class
+    }
+    
+    // Show Quiz
+    function showQuiz() {
+      const level = levels[gameData.currentLevel];
+      if (!level || !level.quiz) return;
+      
+      const quizContainer = document.getElementById('quiz-container');
+      const quizContent = document.getElementById('quiz-content');
+      
+      quizContent.innerHTML = `
+        <div class="quiz-question">
+          <h4>${level.quiz.question}</h4>
+        </div>
+        <div class="quiz-options" id="quiz-options">
+          ${level.quiz.options.map((option, index) => 
+            `<div class="quiz-option" onclick="selectQuizOption(${index})" data-index="${index}">${option}</div>`
+          ).join('')}
+        </div>
+      `;
+      
+      quizContainer.style.display = 'block';
+      
+      // Scroll to quiz
+      quizContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Select Quiz Option
+    function selectQuizOption(index) {
+      // Remove previous selections
+      document.querySelectorAll('.quiz-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      // Select clicked option
+      event.target.classList.add('selected');
+      event.target.dataset.selected = index;
+    }
+    
+    // Submit Quiz
+    function submitQuiz() {
+      const level = levels[gameData.currentLevel];
+      if (!level || !level.quiz) return;
+      
+      const selectedOption = document.querySelector('.quiz-option.selected');
+      if (!selectedOption) {
+        alert("⚠️ Pilih jawaban dulu!");
+        return;
+      }
+      
+      const selectedIndex = parseInt(selectedOption.dataset.index);
+      const isCorrect = selectedIndex === level.quiz.correct;
+      
+      if (isCorrect) {
+        alert("✅ Benar! Jawaban kamu tepat!");
+        giveXP(30); // Bonus XP for quiz
+        
+        // Achievement: Quiz Master
+        if (!gameData.achievements.includes("📚 Quiz Master")) {
+          gameData.achievements.push("📚 Quiz Master");
+          alert("🏆 Achievement Unlocked: Quiz Master!");
+        }
+      } else {
+        alert("❌ Salah. Jawaban yang benar: " + level.quiz.options[level.quiz.correct]);
+      }
+      
+      document.getElementById('quiz-container').style.display = 'none';
+    }
+    
+    // Initialize on load
+    window.onload = initGame;
+  </script>
+</body>
+</html>
