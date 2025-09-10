@@ -1,3 +1,9 @@
+/*
+ * Python Adventure Game
+ * Copyright (c) 2024 Wahyu Hidayat
+ * MIT License
+ */
+
 * {
     margin: 0;
     padding: 0;
@@ -390,6 +396,50 @@ button:disabled {
     transform: rotate(180deg);
 }
 
+/* Logbook Button */
+.logbook-btn {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+    background: #9c27b0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.logbook-btn:hover {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 0 15px #9c27b0;
+}
+
+/* Shop Button */
+.shop-btn {
+    position: absolute;
+    top: 20px;
+    right: 120px;
+    background: #FFD700;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.shop-btn:hover {
+    transform: rotate(20deg) scale(1.1);
+    box-shadow: 0 0 15px #FFD700;
+}
+
 /* Toast Notifications */
 .toast {
     position: fixed;
@@ -425,6 +475,393 @@ button:disabled {
     to { transform: translateX(0); opacity: 1; }
 }
 
+/* Avatar Container */
+.avatar-container {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.avatar {
+    font-size: 60px;
+    margin: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Avatar Outfits */
+.avatar.wizard::before {
+    content: "🧙";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+}
+
+.avatar.knight::before {
+    content: "⚔️";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+}
+
+.avatar.archer::before {
+    content: "🏹";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+}
+
+.avatar.dragon::before {
+    content: "🐉";
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 25px;
+}
+
+.coins-display {
+    background: rgba(255,215,0,0.2);
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 10px;
+    font-weight: bold;
+}
+
+/* XP Animation */
+.xp-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 1000;
+    animation: floatUp 1.5s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%) scale(0.5);
+    }
+}
+
+/* Correct Answer Animation */
+.correct-animation {
+    animation: correctPulse 0.5s ease;
+}
+
+@keyframes correctPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px #4CAF50; }
+    100% { transform: scale(1); }
+}
+
+/* Level Up Animation */
+.level-up-animation {
+    animation: levelUpGlow 2s ease;
+}
+
+@keyframes levelUpGlow {
+    0% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+    50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+/* Logbook Modal */
+.logbook-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.logbook-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.logbook-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.logbook-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.logbook-item {
+    padding: 8px;
+    margin: 5px 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 5px;
+}
+
+/* Shop Modal */
+.shop-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.shop-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.shop-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.shop-section {
+    margin: 20px 0;
+}
+
+.shop-section h3 {
+    color: #FFD700;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.cosmetic-item {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.cosmetic-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.cosmetic-item.unlocked {
+    border-color: gold;
+    background: rgba(255,215,0,0.1);
+}
+
+.cosmetic-item.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cosmetic-item.equipped {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.2);
+    transform: scale(1.05);
+}
+
+.cosmetic-price {
+    font-size: 12px;
+    color: #FFD700;
+    margin-top: 5px;
+}
+
+/* Story & NPC Section */
+.story-section {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border-left: 4px solid #FFD700;
+    position: relative;
+    overflow: hidden;
+}
+
+.story-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700, #4CAF50, #2196F3);
+}
+
+.npc-dialogue {
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    position: relative;
+    border-left: 3px solid #4CAF50;
+}
+
+.npc-dialogue.mentor {
+    border-left-color: #2196F3;
+}
+
+.npc-dialogue.companion {
+    border-left-color: #FF9800;
+}
+
+.npc-dialogue.enemy {
+    border-left-color: #f44336;
+}
+
+.npc-name {
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 5px;
+}
+
+.chapter-title {
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.chapter-reward {
+    background: rgba(76, 175, 80, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 3px solid #4CAF50;
+}
+
+/* Story Modal */
+.story-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.5s ease;
+}
+
+.story-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.story-content h2 {
+    color: #FFD700;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.story-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+.story-reward {
+    background: rgba(76, 175, 80, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 2px solid #4CAF50;
+}
+
+.story-btn {
+    background: #FFD700;
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+.story-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #FFD700;
+}
+
+/* NPC Avatar */
+.npc-avatar {
+    font-size: 40px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.mentor-avatar::before { content: "🧙‍♂️"; }
+.companion-avatar::before { content: "🦉"; }
+.enemy-avatar::before { content: "👹"; }
+
 /* Responsive */
 @media (max-width: 768px) {
     .game-container {
@@ -446,11 +883,18 @@ button:disabled {
         padding: 10px;
     }
     
-    .dark-mode-toggle {
+    .dark-mode-toggle, .logbook-btn, .shop-btn {
         top: 10px;
-        right: 10px;
         width: 35px;
         height: 35px;
         font-size: 18px;
+    }
+    
+    .logbook-btn {
+        right: 60px;
+    }
+    
+    .shop-btn {
+        right: 105px;
     }
 }
