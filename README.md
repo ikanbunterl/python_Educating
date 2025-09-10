@@ -2,6 +2,10 @@
 
 Game edukatif interaktif untuk belajar Python dasar dengan cara yang menyenangkan!
 
+## UPDATE LOG:
+VERSI 1.0:
+
+
 ## 🎯 Fitur Utama:
 - 10 Level pembelajaran Python komplit
 - Sistem XP dan Badge
