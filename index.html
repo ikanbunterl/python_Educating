@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button onclick="toggleDarkMode()" class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+    <button onclick="toggleDarkMode()" class="dark-mode-toggle" id="darkModeToggle" title="Mode Gelap/Terang">🌙</button>
+    <button onclick="showLogbook()" class="logbook-btn" title="Jurnal Petualangan">📖</button>
+    <button onclick="showShop()" class="shop-btn" title="Toko Kosmetik">🛍️</button>
     
     <div class="game-container">
         <div class="header">
@@ -37,12 +39,22 @@
                 </div>
             </div>
             
+            <div class="avatar-container">
+                <div class="avatar" id="player-avatar">🧑‍💻</div>
+                <div class="coins-display">🪙 Koin: <span id="coin-count">0</span></div>
+            </div>
+            
             <div class="badge-container" id="badges">
                 <!-- Badges akan ditambahkan dinamis -->
             </div>
             
-            <div class="story" id="story">
-                Kamu adalah seorang petualang muda yang menemukan buku sihir kuno. Di dalamnya tertulis tentang bahasa pemrograman Python...
+            <div class="story-section" id="story-section">
+                <div class="chapter-title" id="chapter-title">Awal Petualangan</div>
+                <div id="chapter-story">Kamu menemukan sebuah gua rahasia...</div>
+                <div class="npc-dialogue" id="npc-dialogue">
+                    <div class="npc-name" id="npc-name">Guru Sihir Python</div>
+                    <div id="npc-message">Selamat datang, muridku! Aku akan mengajarimu sihir Python yang kuat!</div>
+                </div>
             </div>
             
             <div class="level-selector" id="level-selector">
@@ -63,7 +75,7 @@
             <div class="editor-container">
                 <div class="editor-toolbar">
                     <button onclick="resetCode()" title="Reset ke contoh awal">🔄 Reset</button>
-                    <button onclick="showHint()" class="hint-btn" title="Dapatkan petunjuk">💡 Hint</button>
+                    <button onclick="showHint()" class="hint-btn" title="Dapatkan petunjuk" id="hint-btn">💡 Hint</button>
                     <button onclick="exportCode()" title="Download kode sebagai .py">💾 Export</button>
                     <button onclick="showQuiz()" title="Quiz setelah level">❓ Quiz</button>
                 </div>
