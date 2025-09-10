@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button onclick="toggleDarkMode()" class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+    
     <div class="game-container">
         <div class="header">
             <h1>🐍 Python Adventure</h1>
@@ -16,7 +18,8 @@
         </div>
         
         <div class="loading" id="loading">
-            🚀 Memuat Python Engine... Mohon tunggu sebentar
+            <div class="loading-spinner"></div>
+            <p>🚀 Memuat Python Engine... Mohon tunggu sebentar</p>
         </div>
         
         <div id="game-content" style="display: none;">
