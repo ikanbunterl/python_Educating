@@ -1,3 +1,9 @@
+/*
+ * Python Adventure Game
+ * Copyright (c) 2025 Irkham
+ * MIT License
+ */
+
 // Data Game
 const gameData = {
     currentLevel: 1,
@@ -7,7 +13,180 @@ const gameData = {
     completedLevels: [],
     playerName: "Petualang Python",
     codeHistory: {},
-    darkMode: false
+    darkMode: false,
+    // Sistem koin & kosmetik
+    coins: 0,
+    currentOutfit: "default",
+    currentTheme: "default",
+    currentEffect: "default",
+    unlockedCosmetics: {
+        outfits: ["default"],
+        themes: ["default"],
+        effects: ["default"]
+    },
+    // Sistem cerita
+    storyProgress: {
+        currentChapter: 1,
+        chaptersCompleted: [],
+        npcRelationships: {
+            mentor: 0,
+            companion: 0,
+            enemy: 0
+        }
+    }
+};
+
+// Sistem Kosmetik
+const cosmetics = {
+    // Avatar Outfits
+    outfits: {
+        default: { name: "Penjelajah Biasa", price: 0, unlocked: true },
+        wizard: { name: "Penyihir Muda", price: 50, unlocked: false, requirement: "Level 3" },
+        knight: { name: "Kesatria Berani", price: 75, unlocked: false, requirement: "Level 5" },
+        archer: { name: "Pemanah Lincah", price: 100, unlocked: false, requirement: "Level 7" },
+        dragon: { name: "Penjinak Naga", price: 200, unlocked: false, requirement: "Level 10" }
+    },
+    
+    // Theme Editor
+    themes: {
+        default: { name: "Tema Biasa", price: 0, unlocked: true },
+        dark: { name: "Tema Gelap Mistis", price: 30, unlocked: false, requirement: "Level 2" },
+        forest: { name: "Tema Hutan Ajaib", price: 40, unlocked: false, requirement: "Level 4" },
+        fire: { name: "Tema Api Menyala", price: 60, unlocked: false, requirement: "Level 6" },
+        crystal: { name: "Tema Kristal Sihir", price: 100, unlocked: false, requirement: "Level 8" }
+    },
+    
+    // Effects
+    effects: {
+        default: { name: "Efek Biasa", price: 0, unlocked: true },
+        sparkle: { name: "Efek Berkilau", price: 25, unlocked: false, requirement: "Level 3" },
+        firework: { name: "Efek Kembang Api", price: 50, unlocked: false, requirement: "Level 6" },
+        magic: { name: "Efek Sihir Ungu", price: 75, unlocked: false, requirement: "Level 9" }
+    }
+};
+
+// Sistem Cerita & Karakter
+const story = {
+    // Karakter utama
+    player: {
+        name: "Petualang Python",
+        level: 1,
+        title: "Pemula"
+    },
+    
+    // Karakter NPC
+    npcs: {
+        mentor: {
+            name: "Guru Sihir Python",
+            role: "Mentor",
+            dialogues: {
+                greeting: "Selamat datang, muridku! Aku akan mengajarimu sihir Python yang kuat!",
+                encouragement: "Hebat sekali! Teruslah belajar, kekuatan Python akan membantumu!",
+                warning: "Hati-hati! Error adalah bagian dari perjalanan belajar. Jangan menyerah!",
+                farewell: "Sampai jumpa di petualangan berikutnya, muridku!"
+            }
+        },
+        companion: {
+            name: "Kiko, Burung Hantu Bijak",
+            role: "Teman",
+            dialogues: {
+                greeting: "Halo! Aku Kiko, teman setiamu dalam petualangan Python!",
+                tip: "Psst... kalau bingung, coba gunakan tombol Hint! Aku selalu di sini membantumu!",
+                celebration: "Wah, kamu hebat! Aku bangga padamu!",
+                concern: "Kamu terlihat bingung... butuh bantuan?"
+            }
+        },
+        enemy: {
+            name: "Goblin Error",
+            role: "Musuh",
+            dialogues: {
+                challenge: "Hahaha! Aku Goblin Error! Aku akan mengacaukan kodemu!",
+                defeated: "Aaaargh! Kekuatan Python telah mengalahkanku!",
+                escape: "Kali ini aku kabur, tapi aku akan kembali!"
+            }
+        }
+    },
+    
+    // Cerita utama per level
+    chapter: {
+        1: {
+            title: "Awal Petualangan",
+            intro: "Kamu menemukan sebuah gua rahasia. Di dindingnya tertulis tentang 'variabel' - tempat menyimpan nilai!",
+            mission: "Karakter kamu butuh nama supaya bisa dikenali. Gunakan variabel untuk menyimpan namanya!",
+            reward: "Kamu mendapatkan pengetahuan dasar tentang variabel dan 10 koin emas!",
+            npc: "mentor"
+        },
+        2: {
+            title: "Detektif Tipe Data",
+            intro: "Setelah memahami variabel, kamu menemukan buku sihir tentang berbagai 'tipe data' yang bisa disimpan!",
+            mission: "Kamu adalah detektif yang harus mengidentifikasi tipe data dari berbagai nilai.",
+            reward: "Kamu menjadi ahli dalam mengenali tipe data dan mendapatkan 15 koin emas!",
+            npc: "companion"
+        },
+        3: {
+            title: "Harta Karun Matematika",
+            intro: "Di hutan ajaib, kamu menemukan peti harta karun yang membutuhkan kemampuan matematika untuk dibuka!",
+            mission: "Gunakan operasi matematika untuk menghitung total koinmu.",
+            reward: "Kamu menguasai operasi matematika dasar dan mendapatkan 20 koin emas!",
+            npc: "mentor"
+        },
+        4: {
+            title: "Persimpangan Logika",
+            intro: "Kamu sampai di persimpangan jalan. Hanya dengan logika yang tepat kamu bisa memilih jalan yang benar!",
+            mission: "Gunakan kondisi untuk memutuskan jalan yang harus diambil.",
+            reward: "Kamu menguasai logika kondisi dan mendapatkan 25 koin emas!",
+            npc: "companion"
+        },
+        5: {
+            title: "Menara Perulangan",
+            intro: "Di menara sihir, kamu harus melakukan ritual berulang kali untuk mendapatkan kekuatan baru!",
+            mission: "Gunakan perulangan untuk mengulang proses pengumpulan koin.",
+            reward: "Kamu menguasai kekuatan perulangan dan mendapatkan 30 koin emas!",
+            npc: "mentor"
+        },
+        6: {
+            title: "Mantra Fungsi",
+            intro: "Kamu belajar membuat 'mantra' sihir yang bisa digunakan kapan saja - seperti fungsi dalam Python!",
+            mission: "Buat mantra (fungsi) yang bisa digunakan berulang kali.",
+            reward: "Kamu menguasai seni membuat fungsi dan mendapatkan 35 koin emas!",
+            npc: "companion"
+        },
+        7: {
+            title: "Koleksi Harta Karun",
+            intro: "Di dalam gua kuno, kamu menemukan koleksi item sihir. Kamu butuh cara untuk menyimpan dan mengatur koleksimu!",
+            mission: "Gunakan list untuk menyimpan koleksi item kamu.",
+            reward: "Kamu menguasai seni menyimpan koleksi dan mendapatkan 40 koin emas!",
+            npc: "mentor"
+        },
+        8: {
+            title: "Kamus Sihir",
+            intro: "Kamu menemukan buku sihir kuno yang berisi kamus mantra. Setiap mantra memiliki kekuatan berbeda!",
+            mission: "Buat kamus sihir untuk menyimpan informasi tentang mantra dan kekuatannya!",
+            reward: "Kamu menguasai kamus sihir dan mendapatkan 45 koin emas!",
+            npc: "companion"
+        },
+        9: {
+            title: "Catatan Petualangan",
+            intro: "Kamu ingin menyimpan semua catatan petualanganmu. Kamu belajar cara menyimpan data ke file!",
+            mission: "Simpan catatan petualanganmu ke file agar tidak hilang!",
+            reward: "Kamu menguasai penyimpanan data dan mendapatkan 50 koin emas!",
+            npc: "mentor"
+        },
+        10: {
+            title: "Panggilan Takdir",
+            intro: "Kamu belajar sihir tingkat tinggi - Object Oriented Programming! Sekarang kamu bisa membuat karakter dan kekuatan sendiri!",
+            mission: "Buat karakter petualangmu sendiri dengan class dan object!",
+            reward: "Kamu menguasai sihir OOP dan mendapatkan 60 koin emas!",
+            npc: "mentor"
+        },
+        11: {
+            title: "Penjaga Gerbang",
+            intro: "Kamu diangkat menjadi penjaga gerbang kerajaan. Tugas kamu adalah memastikan hanya input yang valid yang bisa masuk!",
+            mission: "Gunakan try/except untuk menangani error saat ada input yang salah.",
+            reward: "Kamu menjadi penjaga gerbang yang bijak dan mendapatkan 70 koin emas!",
+            npc: "mentor"
+        }
+    }
 };
 
 // Level Definitions (1-11)
@@ -318,6 +497,332 @@ function toggleDarkMode() {
     showToast(gameData.darkMode ? '🌙 Mode Gelap Aktif' : '☀️ Mode Terang Aktif', 'info');
 }
 
+// Update avatar display
+function updateAvatar() {
+    const avatar = document.getElementById('player-avatar');
+    const outfit = gameData.currentOutfit;
+    
+    // Base avatar
+    let baseAvatar = "🧑‍💻";
+    
+    // Apply outfit
+    switch(outfit) {
+        case "wizard":
+            baseAvatar = "🧙‍♂️";
+            break;
+        case "knight":
+            baseAvatar = "👨‍✈️";
+            break;
+        case "archer":
+            baseAvatar = "🏹";
+            break;
+        case "dragon":
+            baseAvatar = "🐉";
+            break;
+    }
+    
+    avatar.textContent = baseAvatar;
+    avatar.className = `avatar ${outfit}`;
+}
+
+// Show Shop
+function showShop() {
+    const modal = document.createElement('div');
+    modal.className = 'shop-modal';
+    modal.innerHTML = `
+        <div class="shop-content">
+            <button class="shop-close" onclick="this.parentElement.parentElement.remove()">×</button>
+            <h2>🛍️ Toko Kosmetik</h2>
+            <div class="coins-display" style="margin: 10px auto; display: block; text-align: center;">
+                🪙 Koin Kamu: <span id="shop-coin-count">${gameData.coins}</span>
+            </div>
+            
+            <!-- Outfits Section -->
+            <div class="shop-section">
+                <h3>👕 Pakaian Karakter</h3>
+                ${Object.keys(cosmetics.outfits).map(key => {
+                    const item = cosmetics.outfits[key];
+                    const isUnlocked = gameData.unlockedCosmetics.outfits.includes(key);
+                    const isEquipped = gameData.currentOutfit === key;
+                    return `
+                        <div class="cosmetic-item ${isUnlocked ? 'unlocked' : 'locked'} ${isEquipped ? 'equipped' : ''}" 
+                             onclick="${isUnlocked ? `equipOutfit('${key}')` : `buyCosmetic('outfit', '${key}')`}"
+                             title="${item.requirement || ''}">
+                            ${key === 'wizard' ? '🧙‍♂️' : key === 'knight' ? '👨‍✈️' : key === 'archer' ? '🏹' : key === 'dragon' ? '🐉' : '🧑‍💻'}<br>
+                            ${item.name}<br>
+                            <div class="cosmetic-price">${isUnlocked ? '✅' : `🪙 ${item.price}`}</div>
+                            ${isEquipped ? '<div style="font-size:10px;color:#4CAF50">Dipakai</div>' : ''}
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+            
+            <!-- Themes Section -->
+            <div class="shop-section">
+                <h3>🎨 Tema Editor</h3>
+                ${Object.keys(cosmetics.themes).map(key => {
+                    const item = cosmetics.themes[key];
+                    const isUnlocked = gameData.unlockedCosmetics.themes.includes(key);
+                    const isEquipped = gameData.currentTheme === key;
+                    return `
+                        <div class="cosmetic-item ${isUnlocked ? 'unlocked' : 'locked'} ${isEquipped ? 'equipped' : ''}" 
+                             onclick="${isUnlocked ? `equipTheme('${key}')` : `buyCosmetic('theme', '${key}')`}"
+                             title="${item.requirement || ''}">
+                            🎨 ${item.name}<br>
+                            <div class="cosmetic-price">${isUnlocked ? '✅' : `🪙 ${item.price}`}</div>
+                            ${isEquipped ? '<div style="font-size:10px;color:#4CAF50">Dipakai</div>' : ''}
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+            
+            <!-- Effects Section -->
+            <div class="shop-section">
+                <h3>✨ Efek Spesial</h3>
+                ${Object.keys(cosmetics.effects).map(key => {
+                    const item = cosmetics.effects[key];
+                    const isUnlocked = gameData.unlockedCosmetics.effects.includes(key);
+                    const isEquipped = gameData.currentEffect === key;
+                    return `
+                        <div class="cosmetic-item ${isUnlocked ? 'unlocked' : 'locked'} ${isEquipped ? 'equipped' : ''}" 
+                             onclick="${isUnlocked ? `equipEffect('${key}')` : `buyCosmetic('effect', '${key}')`}"
+                             title="${item.requirement || ''}">
+                            ✨ ${item.name}<br>
+                            <div class="cosmetic-price">${isUnlocked ? '✅' : `🪙 ${item.price}`}</div>
+                            ${isEquipped ? '<div style="font-size:10px;color:#4CAF50">Dipakai</div>' : ''}
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close dengan ESC
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', closeOnEsc);
+        }
+    });
+}
+
+// Buy Cosmetic
+function buyCosmetic(type, key) {
+    const item = cosmetics[`${type}s`][key];
+    
+    if (gameData.coins >= item.price) {
+        gameData.coins -= item.price;
+        
+        // Add to unlocked
+        if (!gameData.unlockedCosmetics[`${type}s`].includes(key)) {
+            gameData.unlockedCosmetics[`${type}s`].push(key);
+        }
+        
+        saveGame();
+        updateUI();
+        showToast(`🎉 Berhasil membeli ${item.name}!`, 'success');
+        
+        // Refresh shop
+        document.querySelector('.shop-modal')?.remove();
+        showShop();
+    } else {
+        showToast(`❌ Koin tidak cukup! Butuh ${item.price} koin.`, 'error');
+    }
+}
+
+// Equip Outfit
+function equipOutfit(key) {
+    gameData.currentOutfit = key;
+    updateAvatar();
+    saveGame();
+    showToast(`👕 ${cosmetics.outfits[key].name} dipakai!`, 'success');
+    
+    // Refresh shop
+    document.querySelector('.shop-modal')?.remove();
+    showShop();
+}
+
+// Equip Theme (placeholder)
+function equipTheme(key) {
+    gameData.currentTheme = key;
+    saveGame();
+    showToast(`🎨 ${cosmetics.themes[key].name} dipakai!`, 'success');
+    
+    // Refresh shop
+    document.querySelector('.shop-modal')?.remove();
+    showShop();
+}
+
+// Equip Effect (placeholder)
+function equipEffect(key) {
+    gameData.currentEffect = key;
+    saveGame();
+    showToast(`✨ ${cosmetics.effects[key].name} dipakai!`, 'success');
+    
+    // Refresh shop
+    document.querySelector('.shop-modal')?.remove();
+    showShop();
+}
+
+// Give Coins (panggil saat dapat XP atau selesaikan level)
+function giveCoins(amount) {
+    gameData.coins += amount;
+    updateUI();
+    saveGame();
+    
+    // Show coin animation
+    const coinAnim = document.createElement('div');
+    coinAnim.className = 'xp-animation';
+    coinAnim.textContent = `+${amount} 🪙`;
+    coinAnim.style.background = 'rgba(255,215,0,0.9)';
+    document.body.appendChild(coinAnim);
+    
+    setTimeout(() => {
+        coinAnim.remove();
+    }, 1500);
+}
+
+// Update story content
+function updateStory() {
+    const chapter = story.chapter[gameData.currentLevel];
+    if (!chapter) return;
+    
+    // Update chapter info
+    document.getElementById('chapter-title').textContent = chapter.title;
+    document.getElementById('chapter-story').textContent = chapter.intro;
+    
+    // Update NPC dialogue
+    const npc = story.npcs[chapter.npc];
+    if (npc) {
+        document.getElementById('npc-name').textContent = npc.name;
+        document.getElementById('npc-message').textContent = npc.dialogues.greeting;
+        document.getElementById('npc-dialogue').className = `npc-dialogue ${chapter.npc}`;
+    }
+    
+    // Update story progress
+    if (!gameData.storyProgress.chaptersCompleted.includes(gameData.currentLevel)) {
+        gameData.storyProgress.chaptersCompleted.push(gameData.currentLevel);
+        gameData.storyProgress.currentChapter = gameData.currentLevel;
+        saveGame();
+    }
+}
+
+// Show story modal saat level up
+function showStoryModal(chapterNum) {
+    const chapter = story.chapter[chapterNum];
+    if (!chapter) return;
+    
+    const modal = document.createElement('div');
+    modal.className = 'story-modal';
+    modal.innerHTML = `
+        <div class="story-content">
+            <h2>📖 ${chapter.title}</h2>
+            <div class="story-text">${chapter.intro}</div>
+            <div class="story-text">${chapter.mission}</div>
+            <div class="story-reward">🏆 ${chapter.reward}</div>
+            <div class="npc-avatar ${chapter.npc}-avatar"></div>
+            <div style="margin: 15px 0; font-style: italic;">
+                "${story.npcs[chapter.npc].dialogues.greeting}"
+            </div>
+            <button class="story-btn" onclick="this.parentElement.parentElement.remove()">
+                Lanjutkan Petualangan!
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Auto close after 5 seconds
+    setTimeout(() => {
+        modal.remove();
+    }, 5000);
+}
+
+// Show NPC dialogue random:
+function showRandomNPCDialogue() {
+    const chapter = story.chapter[gameData.currentLevel];
+    if (!chapter) return;
+    
+    const npc = story.npcs[chapter.npc];
+    if (!npc) return;
+    
+    // Pilih dialogue acak
+    const dialogues = Object.values(npc.dialogues);
+    const randomDialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
+    
+    // Update NPC dialogue
+    document.getElementById('npc-name').textContent = npc.name;
+    document.getElementById('npc-message').textContent = randomDialogue;
+    document.getElementById('npc-dialogue').className = `npc-dialogue ${chapter.npc}`;
+    
+    // Animasi
+    const dialogueBox = document.getElementById('npc-dialogue');
+    dialogueBox.classList.add('correct-animation');
+    setTimeout(() => {
+        dialogueBox.classList.remove('correct-animation');
+    }, 500);
+}
+
+// Show Logbook
+function showLogbook() {
+    const modal = document.createElement('div');
+    modal.className = 'logbook-modal';
+    modal.innerHTML = `
+        <div class="logbook-content">
+            <button class="logbook-close" onclick="this.parentElement.parentElement.remove()">×</button>
+            <h2>📖 Jurnal Petualangan</h2>
+            
+            <div class="logbook-section">
+                <h3>🏆 Badge yang Dikumpulkan</h3>
+                ${gameData.badges.length > 0 ? 
+                    gameData.badges.map(badge => `<div class="logbook-item">🏅 ${badge}</div>`).join('') :
+                    '<p>Belum ada badge. Selesaikan level untuk mendapatkan badge!</p>'
+                }
+            </div>
+            
+            <div class="logbook-section">
+                <h3>📊 Level yang Diselesaikan</h3>
+                ${gameData.completedLevels.length > 0 ? 
+                    gameData.completedLevels.map(level => `<div class="logbook-item">✅ Level ${level}: ${levels[level]?.title || 'Unknown'}</div>`).join('') :
+                    '<p>Belum ada level yang diselesaikan.</p>'
+                }
+            </div>
+            
+            <div class="logbook-section">
+                <h3>🎮 Statistik</h3>
+                <div class="logbook-item">Level saat ini: ${gameData.currentLevel}</div>
+                <div class="logbook-item">Total XP: ${gameData.xp}</div>
+                <div class="logbook-item">Koin terkumpul: ${gameData.coins}</div>
+                <div class="logbook-item">Badge terkumpul: ${gameData.badges.length}/11</div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close dengan ESC
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', closeOnEsc);
+        }
+    });
+}
+
 // Initialize Game
 async function initGame() {
     try {
@@ -340,6 +845,8 @@ async function initGame() {
         updateUI();
         setupLevelButtons();
         updateLevelContent();
+        updateStory(); // Initialize story
+        updateAvatar(); // Initialize avatar
         
         // Setup keyboard shortcuts
         setupKeyboardShortcuts();
@@ -377,6 +884,16 @@ function setupKeyboardShortcuts() {
         if (e.key === 'd' || e.key === 'D') {
             toggleDarkMode();
         }
+        
+        // L for logbook
+        if (e.key === 'l' || e.key === 'L') {
+            showLogbook();
+        }
+        
+        // S for shop
+        if (e.key === 's' || e.key === 'S') {
+            showShop();
+        }
     });
 }
 
@@ -398,12 +915,14 @@ function updateUI() {
     document.getElementById('current-level').textContent = gameData.currentLevel;
     document.getElementById('current-xp').textContent = gameData.xp;
     document.getElementById('max-xp').textContent = getNextLevelXP();
+    document.getElementById('coin-count').textContent = gameData.coins;
     
     const xpPercent = (gameData.xp / getNextLevelXP()) * 100;
     document.getElementById('xp-bar').style.width = xpPercent + '%';
     document.getElementById('xp-text').textContent = gameData.xp + '/' + getNextLevelXP() + ' XP';
     
     updateBadges();
+    updateAvatar();
 }
 
 // Get XP needed for next level
@@ -475,7 +994,9 @@ function updateLevelContent() {
     document.getElementById('mission-title').textContent = level.title;
     document.getElementById('mission-desc').textContent = level.desc;
     document.getElementById('examples').innerHTML = '<strong>Contoh:</strong><br>' + level.examples.replace(/\n/g, '<br>');
-    document.getElementById('story').textContent = level.story;
+    
+    // Update story content
+    updateStory();
     
     // Set default code based on level
     document.getElementById('code-editor').value = level.defaultCode;
@@ -496,9 +1017,21 @@ function resetCode() {
 // Show Hint
 function showHint() {
     const level = levels[gameData.currentLevel];
+    const hintBtn = document.getElementById('hint-btn');
+    
     if (level && level.hints) {
+        // Disable tombol sementara
+        hintBtn.disabled = true;
+        hintBtn.textContent = "⏳ Cooldown...";
+        
         const randomHint = level.hints[Math.floor(Math.random() * level.hints.length)];
         showToast("💡 " + randomHint, 'info');
+        
+        // Cooldown 10 detik
+        setTimeout(() => {
+            hintBtn.disabled = false;
+            hintBtn.textContent = "💡 Hint";
+        }, 10000);
     }
 }
 
@@ -594,8 +1127,16 @@ sys.stdout = OutputCapture()
 
 // Give XP
 function giveXP(amount) {
+    // Tampilkan animasi XP
+    showXPAnimation(amount);
+    
     gameData.xp += amount;
     const nextLevelXP = getNextLevelXP();
+    
+    // Kasih koin setiap 20 XP
+    if (amount >= 20) {
+        giveCoins(Math.floor(amount / 20));
+    }
     
     if (gameData.xp >= nextLevelXP) {
         levelUp();
@@ -608,6 +1149,8 @@ function giveXP(amount) {
         if (badge && !gameData.badges.includes(badge)) {
             gameData.badges.push(badge);
             showToast("🏆 Badge Unlocked: " + badge, 'success');
+            animateBadgeUnlock();
+            giveCoins(10); // Bonus koin untuk badge
         }
     }
     
@@ -616,18 +1159,49 @@ function giveXP(amount) {
     saveGame();
 }
 
+// Fungsi untuk animasi XP
+function showXPAnimation(amount) {
+    const xpAnim = document.createElement('div');
+    xpAnim.className = 'xp-animation';
+    xpAnim.textContent = `+${amount} XP!`;
+    document.body.appendChild(xpAnim);
+    
+    setTimeout(() => {
+        xpAnim.remove();
+    }, 1500);
+}
+
+// Fungsi untuk animasi badge
+function animateBadgeUnlock() {
+    const badges = document.querySelectorAll('.badge');
+    const lastBadge = badges[badges.length - 1];
+    if (lastBadge) {
+        lastBadge.classList.add('correct-animation');
+        setTimeout(() => {
+            lastBadge.classList.remove('correct-animation');
+        }, 500);
+    }
+}
+
 // Level Up
 function levelUp() {
+    const oldLevel = gameData.currentLevel;
     gameData.currentLevel++;
     gameData.xp = 0;
+    
+    giveCoins(25);
     
     if (gameData.currentLevel > 11) {
         gameData.currentLevel = 11;
         if (!gameData.badges.includes("💎 Python Pro")) {
             gameData.badges.push("💎 Python Pro");
             showToast("🏆 Ultimate Badge Unlocked: Python Pro!", 'success');
+            giveCoins(50);
         }
     }
+    
+    // Show story modal for new level
+    showStoryModal(gameData.currentLevel);
     
     showToast("🎉 Level Up! Kamu sekarang di Level " + gameData.currentLevel, 'success');
     updateLevelContent();
@@ -708,14 +1282,17 @@ function submitQuiz() {
     const isCorrect = selectedIndex === level.quiz.correct;
     
     if (isCorrect) {
-        showToast("✅ Benar! Jawaban kamu tepat!", 'success');
-        giveXP(30); // Bonus XP for quiz
+        // Show NPC encouragement
+        showRandomNPCDialogue();
         
-        // Achievement: Quiz Master
-        if (!gameData.achievements.includes("📚 Quiz Master")) {
-            gameData.achievements.push("📚 Quiz Master");
-            showToast("🏆 Achievement Unlocked: Quiz Master!", 'success');
-        }
+        const output = document.getElementById("output");
+        output.classList.add('correct-animation');
+        setTimeout(() => {
+            output.classList.remove('correct-animation');
+        }, 500);
+        
+        showToast("✅ Benar! Jawaban kamu tepat!", 'success');
+        giveXP(30);
     } else {
         showToast("❌ Salah. Jawaban yang benar: " + level.quiz.options[level.quiz.correct], 'error');
     }
