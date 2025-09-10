@@ -6,10 +6,11 @@ const gameData = {
     achievements: [],
     completedLevels: [],
     playerName: "Petualang Python",
-    codeHistory: {}
+    codeHistory: {},
+    darkMode: false
 };
 
-// Level Definitions (1-10)
+// Level Definitions (1-11)
 const levels = {
     1: {
         title: "🎯 Misi: Kenalan dengan Variabel",
@@ -240,6 +241,30 @@ const levels = {
             ],
             correct: 1
         }
+    },
+    11: {
+        title: "🛡️ Misi: Penjaga Gerbang",
+        desc: "Jadilah penjaga gerbang yang bijak! Gunakan try/except untuk menangani error saat ada input yang salah.",
+        examples: "try:\n    angka = int(input(\"Masukkan angka: \"))\n    hasil = 100 / angka\n    print(\"Hasil: \" + str(hasil))\nexcept ValueError:\n    print(\"Error: Input bukan angka!\")\nexcept ZeroDivisionError:\n    print(\"Error: Tidak bisa dibagi dengan nol!\")\nexcept Exception as e:\n    print(\"Error tidak terduga: \" + str(e))",
+        story: "Kamu diangkat menjadi penjaga gerbang kerajaan. Tugas kamu adalah memastikan hanya input yang valid yang bisa masuk!",
+        badge: "🛡️ Error Handler",
+        defaultCode: "# Contoh: Menangani error saat konversi tipe data\ntry:\n    # Coba kode yang berisiko error\n    angka = int(\"abc\")  # Ini akan error\n    print(\"Angka: \" + str(angka))\nexcept ValueError:\n    print(\"Error: Tidak bisa mengubah 'abc' menjadi angka!\")\n\n# Contoh: Menangani pembagian dengan nol\ntry:\n    hasil = 10 / 0\n    print(\"Hasil: \" + str(hasil))\nexcept ZeroDivisionError:\n    print(\"Error: Tidak bisa membagi dengan nol!\")",
+        hints: [
+            "Gunakan try untuk kode yang berisiko error",
+            "Gunakan except untuk menangkap error spesifik",
+            "Gunakan Exception as e untuk error umum",
+            "finally selalu dijalankan, error atau tidak"
+        ],
+        quiz: {
+            question: "Apa fungsi dari blok 'except'?",
+            options: [
+                "Menjalankan kode normal",
+                "Menangkap dan menangani error",
+                "Menghentikan program",
+                "Membuat variabel"
+            ],
+            correct: 1
+        }
     }
 };
 
@@ -255,6 +280,7 @@ const badges = [
     "📚 Dictionary Wizard",
     "💾 File Handler",
     "🧙 OOP Master",
+    "🛡️ Error Handler",
     "💎 Python Pro"
 ];
 
@@ -271,9 +297,36 @@ const achievements = [
 // Pyodide instance
 let pyodide = null;
 
+// Toast Notification System
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+// Dark Mode Toggle
+function toggleDarkMode() {
+    gameData.darkMode = !gameData.darkMode;
+    document.body.classList.toggle('dark-mode', gameData.darkMode);
+    document.getElementById('darkModeToggle').textContent = gameData.darkMode ? '☀️' : '🌙';
+    saveGame();
+    showToast(gameData.darkMode ? '🌙 Mode Gelap Aktif' : '☀️ Mode Terang Aktif', 'info');
+}
+
 // Initialize Game
 async function initGame() {
     try {
+        // Apply dark mode if saved
+        if (gameData.darkMode) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeToggle').textContent = '☀️';
+        }
+        
         // Load Pyodide
         pyodide = await loadPyodide({
             indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
@@ -293,7 +346,11 @@ async function initGame() {
         
     } catch (error) {
         console.error("Error loading Pyodide:", error);
-        document.getElementById('loading').innerHTML = "❌ Error memuat Python Engine. Silakan refresh halaman.";
+        document.getElementById('loading').innerHTML = `
+            <div class="loading-spinner"></div>
+            <p>❌ Error memuat Python Engine. Silakan refresh halaman.</p>
+        `;
+        showToast('Error memuat Python Engine!', 'error');
     }
 }
 
@@ -314,6 +371,11 @@ function setupKeyboardShortcuts() {
         // Ctrl+Y for redo
         if (e.ctrlKey && e.key === 'y') {
             document.execCommand('redo', false, null);
+        }
+        
+        // D for dark mode toggle
+        if (e.key === 'd' || e.key === 'D') {
+            toggleDarkMode();
         }
     });
 }
@@ -370,7 +432,7 @@ function setupLevelButtons() {
     const selector = document.getElementById('level-selector');
     selector.innerHTML = '';
     
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 11; i++) {
         const btn = document.createElement('button');
         btn.className = 'level-btn';
         btn.textContent = 'Level ' + i;
@@ -402,6 +464,7 @@ function selectLevel(level) {
     setupLevelButtons();
     updateLevelContent();
     saveGame();
+    showToast(`Level ${level} dipilih!`, 'info');
 }
 
 // Update Level Content
@@ -426,6 +489,7 @@ function resetCode() {
     const level = levels[gameData.currentLevel];
     if (level) {
         document.getElementById('code-editor').value = level.defaultCode;
+        showToast('Kode direset ke contoh awal!', 'info');
     }
 }
 
@@ -434,7 +498,7 @@ function showHint() {
     const level = levels[gameData.currentLevel];
     if (level && level.hints) {
         const randomHint = level.hints[Math.floor(Math.random() * level.hints.length)];
-        alert("💡 Petunjuk: " + randomHint);
+        showToast("💡 " + randomHint, 'info');
     }
 }
 
@@ -450,6 +514,7 @@ function exportCode() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    showToast('Kode berhasil di-export!', 'success');
 }
 
 // ✅ SISTEM EKSEKUSI PYTHON YANG BENAR
@@ -465,9 +530,6 @@ async function runCode() {
     output.className = ""; // Reset error class
     
     try {
-        // Simulate loading animation
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
         // Capture Python output
         let outputBuffer = "";
         
@@ -508,7 +570,7 @@ sys.stdout = OutputCapture()
         // Achievement: First Code
         if (!gameData.achievements.includes("🎯 First Code")) {
             gameData.achievements.push("🎯 First Code");
-            alert("🏆 Achievement Unlocked: First Code!");
+            showToast("🏆 Achievement Unlocked: First Code!", 'success');
         }
         
     } catch (error) {
@@ -520,7 +582,7 @@ sys.stdout = OutputCapture()
             // Count errors (simplified)
             if (Math.random() > 0.7) { // Simulate error counting
                 gameData.achievements.push("💥 Error Hunter");
-                alert("🏆 Achievement Unlocked: Error Hunter!");
+                showToast("🏆 Achievement Unlocked: Error Hunter!", 'success');
             }
         }
     } finally {
@@ -545,7 +607,7 @@ function giveXP(amount) {
         const badge = levels[gameData.currentLevel].badge;
         if (badge && !gameData.badges.includes(badge)) {
             gameData.badges.push(badge);
-            alert("🏆 Badge Unlocked: " + badge);
+            showToast("🏆 Badge Unlocked: " + badge, 'success');
         }
     }
     
@@ -559,15 +621,15 @@ function levelUp() {
     gameData.currentLevel++;
     gameData.xp = 0;
     
-    if (gameData.currentLevel > 10) {
-        gameData.currentLevel = 10;
+    if (gameData.currentLevel > 11) {
+        gameData.currentLevel = 11;
         if (!gameData.badges.includes("💎 Python Pro")) {
             gameData.badges.push("💎 Python Pro");
-            alert("🏆 Ultimate Badge Unlocked: Python Pro!");
+            showToast("🏆 Ultimate Badge Unlocked: Python Pro!", 'success');
         }
     }
     
-    alert("🎉 Level Up! Kamu sekarang di Level " + gameData.currentLevel);
+    showToast("🎉 Level Up! Kamu sekarang di Level " + gameData.currentLevel, 'success');
     updateLevelContent();
 }
 
@@ -583,12 +645,14 @@ function showChallenge() {
         7: "📦 Tantangan: Buat list belanja dan tampilkan semua item dengan for loop",
         8: "📚 Tantangan: Buat dictionary kontak teman (nama: nomor) dan tampilkan semua kontak",
         9: "💾 Tantangan: Simpan daftar tugas ke file dan baca kembali",
-        10: "🧙 Tantangan: Buat class 'Monster' dengan atribut dan method serang()"
+        10: "🧙 Tantangan: Buat class 'Monster' dengan atribut dan method serang()",
+        11: "🛡️ Tantangan: Buat kalkulator yang tahan error dengan try/except"
     };
     
     const output = document.getElementById("output");
     output.innerHTML = "⚔️ " + challenges[gameData.currentLevel] || "⚔️ Tantangan spesial untuk level ini!";
     output.className = ""; // Reset error class
+    showToast("⚔️ Tantangan spesial dimuat!", 'info');
 }
 
 // Show Quiz
@@ -614,6 +678,7 @@ function showQuiz() {
     
     // Scroll to quiz
     quizContainer.scrollIntoView({ behavior: 'smooth' });
+    showToast("❓ Quiz dimuat!", 'info');
 }
 
 // Select Quiz Option
@@ -635,7 +700,7 @@ function submitQuiz() {
     
     const selectedOption = document.querySelector('.quiz-option.selected');
     if (!selectedOption) {
-        alert("⚠️ Pilih jawaban dulu!");
+        showToast("⚠️ Pilih jawaban dulu!", 'warning');
         return;
     }
     
@@ -643,16 +708,16 @@ function submitQuiz() {
     const isCorrect = selectedIndex === level.quiz.correct;
     
     if (isCorrect) {
-        alert("✅ Benar! Jawaban kamu tepat!");
+        showToast("✅ Benar! Jawaban kamu tepat!", 'success');
         giveXP(30); // Bonus XP for quiz
         
         // Achievement: Quiz Master
         if (!gameData.achievements.includes("📚 Quiz Master")) {
             gameData.achievements.push("📚 Quiz Master");
-            alert("🏆 Achievement Unlocked: Quiz Master!");
+            showToast("🏆 Achievement Unlocked: Quiz Master!", 'success');
         }
     } else {
-        alert("❌ Salah. Jawaban yang benar: " + level.quiz.options[level.quiz.correct]);
+        showToast("❌ Salah. Jawaban yang benar: " + level.quiz.options[level.quiz.correct], 'error');
     }
     
     document.getElementById('quiz-container').style.display = 'none';
