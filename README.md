@@ -18,6 +18,10 @@
 - 🌙 **Dark Mode** untuk kenyamanan mata
 - 📱 **Responsive design** - bisa dimainkan di PC, tablet, dan HP
 - 💾 **Auto-save progress** - lanjutkan kapan saja
+- 🎭 **Avatar & Kosmetik** - customize karakter kamu
+- 📖 **Cerita konsisten** - RPG-like narrative flow
+- 📚 **Jurnal petualangan** - track achievements
+- ✨ **Animasi & efek** - micro-interactions keren
 
 ## 🎮 Level Pembelajaran
 
@@ -42,6 +46,8 @@
 5. **Lihat hasil** di output console
 6. **Dapatkan XP dan badge** setiap kali berhasil
 7. **Ikuti quiz** untuk uji pemahaman
+8. **Customize avatar** di toko kosmetik
+9. **Track progress** di jurnal petualangan
 
 ## ⌨️ Keyboard Shortcuts
 
@@ -49,6 +55,8 @@
 - **Ctrl + Z** - Undo
 - **Ctrl + Y** - Redo
 - **D** - Toggle Dark Mode
+- **L** - Buka Jurnal Petualangan
+- **S** - Buka Toko Kosmetik
 
 ## 🛠️ Teknologi
 
@@ -72,6 +80,10 @@
 - [x] Quiz interaktif
 - [x] Dark mode
 - [x] Responsive design
+- [x] Avatar & kosmetik system
+- [x] Narrative story system
+- [x] Achievement tracking
+- [x] Micro-interactions & animations
 
 ### 🚀 Rencana Berikutnya
 - [ ] Level 12-20 (Advanced Python)
@@ -81,11 +93,55 @@
 - [ ] Voice narration
 - [ ] Mini games interaktif
 - [ ] Project-based learning
+- [ ] Mobile app version
 
 ## 📊 Update Log
 
-### v1.1.0 (Latest) - 🛡️ Exception Handling Update
-**Tanggal:** [9/11/2025]
+### v2.0.0 (Latest) - 🎭 Ultimate RPG Update
+**Tanggal:** 11/9/2025
+- **🎮 NEW: Avatar & Kosmetik System**
+  - 5 Outfit karakter (Wizard, Knight, Archer, Dragon, dll)
+  - 5 Tema editor (Dark, Forest, Fire, Crystal, dll)
+  - 3 Efek spesial (Sparkle, Firework, Magic)
+  - Sistem koin sebagai reward
+  - Toko kosmetik dengan unlock system
+- **📖 NEW: Narrative Story System**
+  - Cerita konsisten 11 chapter yang nyambung
+  - 3 NPC karakter (Mentor, Companion, Enemy)
+  - Dialogues dinamis per level
+  - Story modal saat level up
+- **✨ NEW: Micro-Interactions & Animations**
+  - Animasi XP yang muncul (+XP!)
+  - Animasi koin yang melayang (+🪙)
+  - Efek glow saat jawaban benar
+  - Animasi badge unlock
+  - Loading spinner keren
+- **📚 NEW: Jurnal Petualangan**
+  - Track badge yang dikumpulkan
+  - Track level yang diselesaikan
+  - Statistik progress
+  - Modal dengan close ESC
+- **🎯 IMPROVED: Hint System**
+  - Tombol hint dengan cooldown 10 detik
+  - Random hints per level
+  - Visual feedback saat cooldown
+- **🔄 IMPROVED: Reset Code**
+  - Tombol reset yang jelas
+  - Kembali ke template awal
+  - Toast notification
+- **🌙 IMPROVED: Dark Mode**
+  - Toggle dengan animasi
+  - Keyboard shortcut (D)
+  - Save preference
+- **🎮 IMPROVED: UI/UX**
+  - Responsive mobile design
+  - Better button layouts
+  - Smooth transitions
+  - Toast notifications
+  - Modal dialogs
+
+### v1.1.0 - 🛡️ Exception Handling Update
+**Tanggal:** 10/9/2025
 - **🆕 Tambah Level 11:** Exception Handling (try/except)
 - **✨ Perbaikan UI/UX:** 
   - Dark mode toggle dengan animasi
@@ -101,7 +157,7 @@
   - Touch-friendly buttons
 
 ### v1.0.0 - 🎉 Initial Release
-**Tanggal:** [9/11/2025]
+**Tanggal:** 10/9/2025
 - **🎮 10 Level Pembelajaran** komplit
 - **🏆 Sistem XP dan Badge**
 - **❓ Quiz setelah setiap level**
@@ -109,6 +165,16 @@
 - **🚀 Eksekusi Python real-time di browser**
 - **💾 Auto-save progress**
 - **📱 Responsive design**
+
+## 🤝 Kontribusi
+
+Kontribusi sangat diharapkan! Cara kontribusi:
+
+1. **Fork** repository ini
+2. **Buat branch** baru (`git checkout -b feature/AmazingFeature`)
+3. **Commit perubahan** (`git commit -m 'Add some AmazingFeature'`)
+4. **Push ke branch** (`git push origin feature/AmazingFeature`)
+5. **Buka Pull Request**
 
 ### Area Kontribusi:
 - 🎨 UI/UX Design
@@ -119,10 +185,9 @@
 
 ## 👨‍💻 Dibuat oleh
 
-**[Ikanbunterl]**
-- GitHub: [@ikanbunterl
-](https://github.com/ikanbunterl)
-- Email: [irkhamdaffa74@gmail.com]
+**Irkham Daffa**
+- GitHub: [@Ikanbunterl](https://github.com/ikanbunterl)
+- Email: irkhamdaffa74@gmail.com
 
 ## 📄 Lisensi
 
@@ -139,8 +204,7 @@ MIT License - lihat file [LICENSE](LICENSE) untuk detailnya.
 
 Punya pertanyaan, saran, atau feedback?
 - **Buka issue** di GitHub
-- **Email:** [irkhamdaffa74@gmail.com]
-- **Instagram** [@someoneajahhh]
+- **Email:** irkhamdaffa74@gmail.com
 
 ---
 
