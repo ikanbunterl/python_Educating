@@ -1,6 +1,6 @@
 ## 📄 `README-DEV.md` - Developer Notes
 
-```markdown
+
 # 🐍 Python Adventure Game - Developer Notes
 
 ## 🎯 **IMPORTANT: SAVE THIS FILE FOR FUTURE DEVELOPMENT**
