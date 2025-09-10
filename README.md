@@ -126,7 +126,7 @@
 
 ## 📄 Lisensi
 
-lisensi belum ada(kalo mau copy silahkan)
+MIT License - lihat file [LICENSE](LICENSE) untuk detailnya.
 
 ## 🙏 Terima Kasih
 
