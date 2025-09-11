@@ -22,7 +22,7 @@
 - 📖 **Cerita konsisten** - RPG-like narrative flow
 - 📚 **Jurnal petualangan** - track achievements
 - ✨ **Animasi & efek** - micro-interactions keren
-- 🎨 **🎨 Playground**  - Area bereksperimen bebas dengan kode Python
+- 🎨 **Playground**  - Area bereksperimen bebas dengan kode Python
 - ⌨️ **Indentasi Otomatis** - Otomatis tambah spasi setelah `:` untuk kemudahan coding
 
 ## 🎮 Level Pembelajaran
@@ -78,30 +78,13 @@
 
 ## 📈 Roadmap Pengembangan
 
-### ✅ Sudah Rilis
-
--   [x] 11 Level pembelajaran dasar
--   [x] Sistem XP dan badge
--   [x] Quiz interaktif
--   [x] Dark mode
--   [x] Responsive design
--   [x] Avatar & kosmetik system
--   [x] Narrative story system
--   [x] Achievement tracking
--   [x] Micro-interactions & animations
--   [x] **🎨 Playground (Saran Komunitas #51)**
--   [x] **⌨️ Indentasi Otomatis (Saran Komunitas #52)**
-
 ### 🚀 Rencana Berikutnya
 
--   [ ] Level 12-20 (Advanced Python: Modules, Database, Web Scraping, API)
--   [ ] Multiplayer mode
--   [ ] Leaderboard online
--   [ ] Export ke PDF
--   [ ] Voice narration
--   [ ] Mini games interaktif
--   [ ] Project-based learning
--   [ ] Mobile app version
+- [ ] mini games
+- [ ] level baru dengan pelajaran baru
+- [ ] hall of code
+- [ ] fixing bug
+- [ ] coming soon
 
 ## 📊 Update Log
 
@@ -125,7 +108,6 @@ Berdasarkan saran dari komunitas, update kali ini fokus pada peningkatan pengala
     -   Berlaku di editor kode utama dan editor Playground.
 
 -   **🔧 FIXED: Error Script**
-    -   File `script.js` diperbaiki secara menyeluruh untuk menghilangkan lebih dari 300 error sintaks.
     -   Masalah disebabkan oleh penggunaan karakter template literal (backticks `` ` ``) yang tidak kompatibel.
     -   Kini seluruh file menggunakan string dan concatenation (`+`) yang lebih aman.
 
