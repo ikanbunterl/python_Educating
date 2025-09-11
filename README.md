@@ -22,8 +22,8 @@
 - 📖 **Cerita konsisten** - RPG-like narrative flow
 - 📚 **Jurnal petualangan** - track achievements
 - ✨ **Animasi & efek** - micro-interactions keren
-- 🎨 **🎨 Playground  - Area bereksperimen bebas dengan kode Python
-- ⌨️ **Indentasi Otomatis  - Otomatis tambah spasi setelah `:` untuk kemudahan coding
+- 🎨 **🎨 Playground**  - Area bereksperimen bebas dengan kode Python
+- ⌨️ **Indentasi Otomatis** - Otomatis tambah spasi setelah `:` untuk kemudahan coding
 
 ## 🎮 Level Pembelajaran
 
