@@ -12,18 +12,15 @@
     <button onclick="toggleDarkMode()" class="dark-mode-toggle" id="darkModeToggle" title="Mode Gelap/Terang">🌙</button>
     <button onclick="showLogbook()" class="logbook-btn" title="Jurnal Petualangan">📖</button>
     <button onclick="showShop()" class="shop-btn" title="Toko Kosmetik">🛍️</button>
-    
     <div class="game-container">
         <div class="header">
             <h1>🐍 Python Adventure</h1>
             <p>Belajar Python Sambil Berpetualang!</p>
         </div>
-        
         <div class="loading" id="loading">
             <div class="loading-spinner"></div>
             <p>🚀 Memuat Python Engine... Mohon tunggu sebentar</p>
         </div>
-        
         <div id="game-content" style="display: none;">
             <div class="player-info">
                 <div>
@@ -38,16 +35,13 @@
                     </div>
                 </div>
             </div>
-            
             <div class="avatar-container">
                 <div class="avatar" id="player-avatar">🧑‍💻</div>
                 <div class="coins-display">🪙 Koin: <span id="coin-count">0</span></div>
             </div>
-            
             <div class="badge-container" id="badges">
                 <!-- Badges akan ditambahkan dinamis -->
             </div>
-            
             <div class="story-section" id="story-section">
                 <div class="chapter-title" id="chapter-title">Awal Petualangan</div>
                 <div id="chapter-story">Kamu menemukan sebuah gua rahasia...</div>
@@ -56,22 +50,18 @@
                     <div id="npc-message">Selamat datang, muridku! Aku akan mengajarimu sihir Python yang kuat!</div>
                 </div>
             </div>
-            
             <div class="level-selector" id="level-selector">
                 <!-- Level buttons akan ditambahkan dinamis -->
             </div>
-            
             <div class="mission" id="mission">
                 <h3 id="mission-title">🎯 Misi: Kenalan dengan Variabel</h3>
                 <p id="mission-desc">Karakter kamu butuh nama supaya bisa dikenali. Gunakan variabel untuk menyimpan namanya!</p>
-                
                 <div id="examples" class="hint">
                     <strong>Contoh:</strong><br>
                     nama = "Budi"<br>
                     print("Halo, " + nama)
                 </div>
             </div>
-            
             <div class="editor-container">
                 <div class="editor-toolbar">
                     <button onclick="resetCode()" title="Reset ke contoh awal">🔄 Reset</button>
@@ -79,20 +69,17 @@
                     <button onclick="exportCode()" title="Download kode sebagai .py">💾 Export</button>
                     <button onclick="showQuiz()" title="Quiz setelah level">❓ Quiz</button>
                 </div>
-                
                 <div class="editor-wrapper">
                     <textarea id="code-editor" placeholder="Tulis kode Python di sini..." spellcheck="false">nama = "Budi"
 print("Halo, " + nama)</textarea>
                 </div>
             </div>
-            
             <div class="button-group">
                 <button onclick="runCode()" id="run-btn">🚀 Jalankan Kode (Ctrl+Enter)</button>
                 <button class="special-btn" onclick="showChallenge()">⚔️ Tantangan Spesial</button>
+                <button class="special-btn" onclick="showPlayground()">🎨 Playground</button>
             </div>
-            
             <div id="output">🎮 Output akan muncul di sini...</div>
-            
             <div class="quiz-container" id="quiz-container">
                 <h3>❓ Quiz Cepat</h3>
                 <div id="quiz-content"></div>
@@ -100,7 +87,6 @@ print("Halo, " + nama)</textarea>
             </div>
         </div>
     </div>
-
     <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
