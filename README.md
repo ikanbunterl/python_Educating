@@ -106,7 +106,7 @@
 ## 📊 Update Log
 
 ### v2.1.0 (Latest) - 🎨 Playground & Auto-Indent Update
-**Tanggal:** April 2024
+**Tanggal:** 11/9/2025
 
 Berdasarkan saran dari komunitas, update kali ini fokus pada peningkatan pengalaman coding dan eksperimen pemain.
 
