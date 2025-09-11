@@ -1298,7 +1298,5 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAutoIndent(mainEditor);
     setupAutoIndent(playgroundEditor); // Untuk playground juga
 });
-// --- Akhir Fitur Baru ---
 
-// Initialize on load
 window.onload = initGame;
