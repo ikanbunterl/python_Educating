@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🐍 Python Adventure - Game Edukatif</title>
     <meta name="description" content="Game edukatif interaktif untuk belajar Python dasar dengan menyenangkan">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <style>
-        /* === INDEX PAGE SPECIFIC STYLES === */
+        /* === INDEX PAGE SPECIFIC STYLES (Diperbarui) === */
         
         /* Hero Section */
         .hero-section {
@@ -28,13 +27,13 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #FFD700, #4CAF50, #2196F3);
+            background: linear-gradient(90deg, #F1C40F, #4CAF50, #3498DB);
         }
         
         .hero-section h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
@@ -44,7 +43,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.9); /* Putih keabuan */
         }
         
         /* Hero Buttons */
@@ -57,7 +56,7 @@
         }
         
         .hero-btn {
-            background: #4CAF50;
+            background: #4CAF50; /* Hijau python */
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -78,11 +77,11 @@
         }
         
         .hero-btn.secondary {
-            background: #2196F3;
+            background: #3498DB; /* Biru muda */
         }
         
         .hero-btn.secondary:hover {
-            background: #1976D2;
+            background: #2980B9;
         }
         
         /* Features Grid */
@@ -92,7 +91,7 @@
         
         .features-section h2 {
             text-align: center;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 2rem;
             font-size: 2rem;
         }
@@ -127,23 +126,23 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #FFD700, #4CAF50);
+            background: linear-gradient(90deg, #F1C40F, #4CAF50);
         }
         
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
         }
         
         .feature-card h3 {
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
         
         .feature-card p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.8); /* Putih keabuan */
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -158,6 +157,8 @@
             font-size: 0.9rem;
             margin-top: 1rem;
             transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .feature-btn:hover {
@@ -175,7 +176,7 @@
         }
         
         .stats-section h2 {
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 2rem;
             font-size: 2rem;
         }
@@ -195,12 +196,12 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 0.5rem;
         }
         
         .stat-label {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.8); /* Putih keabuan */
             font-size: 1rem;
         }
         
@@ -211,7 +212,7 @@
         
         .testimonials-section h2 {
             text-align: center;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 2rem;
             font-size: 2rem;
         }
@@ -226,19 +227,19 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 2rem;
-            border-left: 4px solid #FFD700;
+            border-left: 4px solid #F1C40F; /* Kuning cerah */
         }
         
         .testimonial-text {
             font-style: italic;
             margin-bottom: 1rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.9); /* Putih keabuan */
             line-height: 1.6;
         }
         
         .testimonial-author {
             font-weight: bold;
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
         }
         
         /* CTA Section */
@@ -251,7 +252,7 @@
         }
         
         .cta-section h2 {
-            color: #FFD700;
+            color: #F1C40F; /* Kuning cerah */
             margin-bottom: 1rem;
             font-size: 2rem;
         }
@@ -259,7 +260,7 @@
         .cta-section p {
             margin-bottom: 2rem;
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.9); /* Putih keabuan */
         }
         
         /* Footer */
@@ -268,53 +269,135 @@
             padding: 2rem;
             margin-top: 3rem;
             border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.7); /* Putih keabuan */
         }
         
         footer p {
             margin: 0.5rem 0;
         }
         
-        /* Update Log Button */
+        footer a {
+            color: #F1C40F; /* Kuning cerah */
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Update Log Modal (Diperbarui) */
+        .logbook-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none; /* Awalnya disembunyikan */
+            justify-content: center;
+            align-items: center;
+            z-index: 5000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .logbook-content {
+            background: #f9f9f9; /* Latar belakang putih */
+            color: #333; /* Teks hitam */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .logbook-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333; /* Warna tombol 'x' hitam */
+        }
+
+        .logbook-close:hover {
+            color: #f44336; /* Merah saat hover */
+        }
+
+        .logbook-content h2 {
+            color: #333; /* Judul hitam */
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logbook-content h3 {
+            color: #333; /* Subjudul hitam */
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logbook-content p, .logbook-content ul, .logbook-content li {
+            color: #333; /* Teks hitam */
+        }
+
+        .logbook-content code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        /* Update Log Button (Opsional, bisa disembunyikan jika tidak diinginkan di navbar) */
         .update-log-btn {
             position: absolute;
             top: 20px;
             right: 170px;
-            background: #FF9800;
+            background: #F1C40F; /* Kuning cerah */
             border: none;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             cursor: pointer;
             font-size: 20px;
-            color: white;
+            color: #1E1E2E; /* Abu-abu gelap untuk kontras */
             transition: all 0.3s ease;
             z-index: 100;
         }
 
         .update-log-btn:hover {
-            background: rgba(255, 152, 0, 0.8);
+            background: rgba(241, 196, 15, 0.8);
             transform: rotate(10deg) scale(1.1);
-            box-shadow: 0 0 15px #FF9800;
+            box-shadow: 0 0 15px #F1C40F;
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="top-nav">
-    <div class="nav-brand">
-        <span class="logo">🐍</span>
-        <span class="title">Python Adventure</span>
-    </div>
-    <div class="nav-links">
-        <a href="index.html" class="nav-link active">🏠 Home</a>
-        <a href="lab.html" class="nav-link">🧪 Lab</a>
-        <a href="lessons.html" class="nav-link">📚 Pelajaran</a>
-        <a href="achievements.html" class="nav-link">🏆 Achievements</a>
-        <a href="playground.html" class="nav-link">🎮 Playground</a>
-        <button class="nav-link" onclick="showUpdateLog()">📝 Update Log</button>
-    </div>
-</nav>
+        <div class="nav-brand">
+            <span class="logo">🐍</span>
+            <span class="title">Python Adventure</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">🏠 Home</a>
+            <a href="lab.html" class="nav-link">🧪 Lab</a>
+            <a href="lessons.html" class="nav-link">📚 Pelajaran</a>
+            <a href="achievements.html" class="nav-link">🏆 Achievements</a>
+            <!-- Playground dihapus dari navigasi -->
+            <button class="nav-link" onclick="showUpdateLog()">📝 Update Log</button>
+        </div>
+    </nav>
 
     <div class="game-container">
         <!-- Hero Section -->
@@ -335,7 +418,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🧪</div>
                     <h3>Laboratorium</h3>
-                    <p>Buat dan kelola proyek Python kamu sendiri. Eksperimen bebas tanpa batasan!</p>
+                    <p>Buat dan kelola file Python kamu sendiri. Eksperimen bebas tanpa batasan!</p>
                     <a href="lab.html" class="feature-btn">Buka Lab</a>
                 </div>
                 
@@ -353,12 +436,7 @@
                     <a href="achievements.html" class="feature-btn">Lihat Prestasi</a>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Playground</h3>
-                    <p>Area kreatif untuk bereksperimen dengan kode Python tanpa batasan misi.</p>
-                    <a href="playground.html" class="feature-btn">Buka Playground</a>
-                </div>
+                <!-- Playground dihapus sebagai fitur utama di home -->
             </div>
         </div>
         
@@ -403,7 +481,7 @@
                 </div>
                 
                 <div class="testimonial-card">
-                    <div class="testimonial-text">"Fitur Playground-nya luar biasa! Bisa eksperimen bebas tanpa takut salah."</div>
+                    <div class="testimonial-text">"Fitur Lab-nya luar biasa! Bisa eksperimen bebas dengan file-file terpisah."</div>
                     <div class="testimonial-author">- Candra, Developer Pemula</div>
                 </div>
             </div>
@@ -420,39 +498,39 @@
     <!-- Footer -->
     <footer>
         <p>🐍 Python Adventure Game &copy; 2025 | Belajar Python dengan Menyenangkan</p>
-        <p>Made with ❤️ for Indonesian Learners</p>
-        <p><a href="https://github.com/username-kamu/python-adventure-game" target="_blank" style="color: #FFD700;">GitHub Repository</a> | <a href="#update-log" onclick="showUpdateLog()" style="color: #FFD700;">Update Log</a></p>
+        <p>Dibuat dengan ❤️ untuk Para Pelajar Indonesia</p>
+        <p>
+            <a href="https://github.com/username-kamu/python-adventure-game" target="_blank">GitHub Repository</a> | 
+            <a href="#" onclick="showUpdateLog(); return false;">Update Log</a>
+        </p>
     </footer>
 
     <!-- Update Log Modal -->
-    <div id="update-log-modal" class="logbook-modal" style="display: none;">
+    <div id="update-log-modal" class="logbook-modal">
         <div class="logbook-content">
-            <button class="logbook-close" onclick="document.getElementById('update-log-modal').style.display='none'">×</button>
+            <button class="logbook-close" onclick="document.getElementById('update-log-modal').style.display='none'">&times;</button>
             <h2>📜 Update Log</h2>
-            <div id="update-log-content" style="text-align: left; max-height: 70vh; overflow-y: auto;">
+            <div id="update-log-content" style="text-align: left;">
                 <!-- Isi Update Log akan dimuat di sini -->
             </div>
         </div>
     </div>
 
-    <!-- Update Log Button -->
-    <button class="update-log-btn" title="Lihat Update Log" onclick="showUpdateLog()">📜</button>
+    <!-- Update Log Button (Opsional) -->
+    <!-- <button class="update-log-btn" title="Lihat Update Log" onclick="showUpdateLog()">📜</button> -->
 
-    <!-- Pyodide -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-    <script src="script.js"></script>
-    
     <script>
         // Show Update Log
         function showUpdateLog() {
             const modal = document.getElementById('update-log-modal');
             const contentDiv = document.getElementById('update-log-content');
             
+            // Isi dengan log update (bisa diambil dari README.txt atau sumber lain)
             contentDiv.innerHTML = `
-<h3>v3.0.0 - 🎨 UI/UX Revolution Update</h3>
-<p><strong>Tanggal:</strong> 12 September 2025</p>
-<ul>
-<li><strong>🎨 NEW: Redesign UI/UX Home Page</strong>
+<h3 style="color: #333;">v3.0.0 - 🎨 UI/UX Revolution Update</h3>
+<p style="color: #333;"><strong>Tanggal:</strong> 12 September 2025</p>
+<ul style="color: #333;">
+<li><strong style="color: #333;">🎨 NEW: Redesign UI/UX Home Page</strong>
   <ul>
     <li>Hero section yang lebih menarik dengan gradient border</li>
     <li>Features grid dengan card design yang konsisten</li>
@@ -463,7 +541,7 @@
     <li>Responsive design yang lebih baik untuk mobile</li>
   </ul>
 </li>
-<li><strong>🔧 FIXED: Update Log System</strong>
+<li><strong style="color: #333;">🔧 FIXED: Update Log System</strong>
   <ul>
     <li>Menambahkan tombol "Update Log" di footer</li>
     <li>Modal update log yang lebih rapi dan informatif</li>
@@ -471,7 +549,7 @@
     <li>Perbedaan antara perubahan FIX dan improvisasi</li>
   </ul>
 </li>
-<li><strong>📱 IMPROVED: Mobile Responsiveness</strong>
+<li><strong style="color: #333;">📱 IMPROVED: Mobile Responsiveness</strong>
   <ul>
     <li>Hero buttons yang stack vertikal di mobile</li>
     <li>Grid layout yang adaptif untuk semua ukuran layar</li>
@@ -479,7 +557,7 @@
     <li>Padding dan margin yang lebih konsisten</li>
   </ul>
 </li>
-<li><strong>✨ IMPROVED: Visual Consistency</strong>
+<li><strong style="color: #333;">✨ IMPROVED: Visual Consistency</strong>
   <ul>
     <li>Border dan shadow yang konsisten di semua card</li>
     <li>Color scheme yang harmonis</li>
@@ -489,28 +567,28 @@
 </li>
 </ul>
 
-<h3>v2.1.0 - 🎨 Playground & Auto-Indent Update</h3>
-<p><strong>Tanggal:</strong> 11 September 2025</p>
-<ul>
-<li><strong>🎮 NEW: 🎨 Playground (Saran #51)</strong>
+<h3 style="color: #333;">v2.1.0 - 🎨 Playground & Auto-Indent Update</h3>
+<p style="color: #333;"><strong>Tanggal:</strong> 11 September 2025</p>
+<ul style="color: #333;">
+<li><strong style="color: #333;">🎮 NEW: 🎨 Playground (Saran #51)</strong>
   <ul>
     <li>Area khusus untuk bereksperimen bebas dengan kode Python</li>
     <li>Tempat kreatif untuk mencoba ide atau membuat seni ASCII</li>
     <li>Kode disimpan otomatis dan bisa disimpan secara manual</li>
     <li>Toolbar: Jalankan, Simpan, Bersihkan Output, Reset</li>
-    <li>Shortcut: <code>Ctrl+Enter</code> untuk menjalankan kode</li>
+    <li>Shortcut: <code style="color: #333;">Ctrl+Enter</code> untuk menjalankan kode</li>
     <li>Akses: Klik tombol baru "🎨 Playground" di bawah editor kode utama</li>
   </ul>
 </li>
-<li><strong>⌨️ NEW: Indentasi Otomatis (Saran #52)</strong>
+<li><strong style="color: #333;">⌨️ NEW: Indentasi Otomatis (Saran #52)</strong>
   <ul>
-    <li>Fitur yang secara otomatis menambahkan 4 spasi ketika mengetik <code>:</code> di akhir baris</li>
-    <li>Mempermudah penulisan kode Python yang membutuhkan indentasi (<code>if</code>, <code>for</code>, <code>def</code>, dll)</li>
+    <li>Fitur yang secara otomatis menambahkan 4 spasi ketika mengetik <code style="color: #333;">:</code> di akhir baris</li>
+    <li>Mempermudah penulisan kode Python yang membutuhkan indentasi (<code style="color: #333;">if</code>, <code style="color: #333;">for</code>, <code style="color: #333;">def</code>, dll)</li>
     <li>Terutama membantu pemain mobile di mana mengetik spasi banyak bisa sulit</li>
     <li>Berlaku di editor kode utama dan editor Playground</li>
   </ul>
 </li>
-<li><strong>🔧 FIXED: Error Script</strong>
+<li><strong style="color: #333;">🔧 FIXED: Error Script</strong>
   <ul>
     <li>Memperbaiki bug saat menjalankan script tertentu</li>
     <li>Menangani error lebih baik agar tidak crash</li>
@@ -518,38 +596,38 @@
 </li>
 </ul>
 
-<h3>v2.0.0 - 🎭 Ultimate RPG Update</h3>
-<p><strong>Tanggal:</strong> 10 September 2025</p>
-<ul>
-<li><strong>🎮 NEW: Avatar & Kosmetik System</strong></li>
-<li><strong>📖 NEW: Narrative Story System</strong></li>
-<li><strong>✨ NEW: Micro-Interactions & Animations</strong></li>
-<li><strong>📚 NEW: Jurnal Petualangan</strong></li>
-<li><strong>🎯 IMPROVED: Hint System</strong></li>
-<li><strong>🔄 IMPROVED: Reset Code</strong></li>
-<li><strong>🌙 IMPROVED: Dark Mode</strong></li>
-<li><strong>🎮 IMPROVED: UI/UX</strong></li>
+<h3 style="color: #333;">v2.0.0 - 🎭 Ultimate RPG Update</h3>
+<p style="color: #333;"><strong>Tanggal:</strong> 10 September 2025</p>
+<ul style="color: #333;">
+<li><strong style="color: #333;">🎮 NEW: Avatar & Kosmetik System</strong></li>
+<li><strong style="color: #333;">📖 NEW: Narrative Story System</strong></li>
+<li><strong style="color: #333;">✨ NEW: Micro-Interactions & Animations</strong></li>
+<li><strong style="color: #333;">📚 NEW: Jurnal Petualangan</strong></li>
+<li><strong style="color: #333;">🎯 IMPROVED: Hint System</strong></li>
+<li><strong style="color: #333;">🔄 IMPROVED: Reset Code</strong></li>
+<li><strong style="color: #333;">🌙 IMPROVED: Dark Mode</strong></li>
+<li><strong style="color: #333;">🎮 IMPROVED: UI/UX</strong></li>
 </ul>
 
-<h3>v1.1.0 - 🛡️ Exception Handling Update</h3>
-<p><strong>Tanggal:</strong> 9 September 2025</p>
-<ul>
-<li><strong>🆕 Tambah Level 11:</strong> Exception Handling (try/except)</li>
-<li><strong>✨ Perbaikan UI/UX:</strong> 
+<h3 style="color: #333;">v1.1.0 - 🛡️ Exception Handling Update</h3>
+<p style="color: #333;"><strong>Tanggal:</strong> 9 September 2025</p>
+<ul style="color: #333;">
+<li><strong style="color: #333;">🆕 Tambah Level 11:</strong> Exception Handling (try/except)</li>
+<li><strong style="color: #333;">✨ Perbaikan UI/UX:</strong> 
   <ul>
     <li>Dark mode toggle dengan animasi</li>
     <li>Loading spinner yang keren</li>
     <li>Toast notifications untuk feedback</li>
   </ul>
 </li>
-<li><strong>🔧 Optimasi:</strong>
+<li><strong style="color: #333;">🔧 Optimasi:</strong>
   <ul>
     <li>Keyboard shortcuts yang lebih responsif</li>
     <li>Better error handling</li>
     <li>Save dark mode preference</li>
   </ul>
 </li>
-<li><strong>📱 Responsive:</strong> 
+<li><strong style="color: #333;">📱 Responsive:</strong> 
   <ul>
     <li>Tampilan mobile yang lebih baik</li>
     <li>Touch-friendly buttons</li>
@@ -557,20 +635,20 @@
 </li>
 </ul>
 
-<h3>v1.0.0 - 🎉 Initial Release</h3>
-<p><strong>Tanggal:</strong> 8 September 2025</p>
-<ul>
-<li><strong>🎮 10 Level Pembelajaran</strong> komplit</li>
-<li><strong>🏆 Sistem XP dan Badge</strong></li>
-<li><strong>❓ Quiz setelah setiap level</strong></li>
-<li><strong>💻 Editor kode dengan syntax highlighting</strong></li>
-<li><strong>🚀 Eksekusi Python real-time di browser</strong></li>
-<li><strong>💾 Auto-save progress</strong></li>
-<li><strong>📱 Responsive design</strong></li>
+<h3 style="color: #333;">v1.0.0 - 🎉 Initial Release</h3>
+<p style="color: #333;"><strong>Tanggal:</strong> 8 September 2025</p>
+<ul style="color: #333;">
+<li><strong style="color: #333;">🎮 10 Level Pembelajaran</strong> komplit</li>
+<li><strong style="color: #333;">🏆 Sistem XP dan Badge</strong></li>
+<li><strong style="color: #333;">❓ Quiz setelah setiap level</strong></li>
+<li><strong style="color: #333;">💻 Editor kode dengan syntax highlighting</strong></li>
+<li><strong style="color: #333;">🚀 Eksekusi Python real-time di browser</strong></li>
+<li><strong style="color: #333;">💾 Auto-save progress</strong></li>
+<li><strong style="color: #333;">📱 Responsive design</strong></li>
 </ul>
 `;
             modal.style.display = 'flex';
         }
     </script>
 </body>
-</html> 
+</html>
