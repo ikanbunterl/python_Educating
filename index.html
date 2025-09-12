@@ -7,136 +7,570 @@
     <meta name="description" content="Game edukatif interaktif untuk belajar Python dasar dengan menyenangkan">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* === INDEX PAGE SPECIFIC STYLES === */
+        
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 74, 162, 0.1));
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #4CAF50, #2196F3);
+        }
+        
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Hero Buttons */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .hero-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hero-btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .hero-btn.secondary {
+            background: #2196F3;
+        }
+        
+        .hero-btn.secondary:hover {
+            background: #1976D2;
+        }
+        
+        /* Features Grid */
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #4CAF50);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .feature-card h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .feature-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .feature-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .stats-section h2 {
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            margin: 3rem 0;
+        }
+        
+        .testimonials-section h2 {
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .cta-section h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Update Log Button */
+        .update-log-btn {
+            position: absolute;
+            top: 20px;
+            right: 170px;
+            background: #FF9800;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .update-log-btn:hover {
+            background: rgba(255, 152, 0, 0.8);
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 0 15px #FF9800;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="toggleDarkMode()" class="dark-mode-toggle" id="darkModeToggle" title="Mode Gelap/Terang">🌙</button>
-    <button onclick="showLogbook()" class="logbook-btn" title="Jurnal Petualangan">📖</button>
-    <button onclick="showShop()" class="shop-btn" title="Toko Kosmetik">🛍️</button>
-    
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+    <div class="nav-brand">
+        <span class="logo">🐍</span>
+        <span class="title">Python Adventure</span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link active">🏠 Home</a>
+        <a href="lab.html" class="nav-link">🧪 Lab</a>
+        <a href="lessons.html" class="nav-link">📚 Pelajaran</a>
+        <a href="achievements.html" class="nav-link">🏆 Achievements</a>
+        <a href="playground.html" class="nav-link">🎮 Playground</a>
+        <button class="nav-link" onclick="showUpdateLog()">📝 Update Log</button>
+    </div>
+</nav>
+
     <div class="game-container">
-        <div class="header">
-            <h1>🐍 Python Adventure</h1>
-            <p>Belajar Python Sambil Berpetualang!</p>
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>🐍 Selamat Datang di Python Adventure!</h1>
+            <p>Belajar Python dengan cara yang menyenangkan dan interaktif. Mulai petualanganmu sekarang!</p>
+            
+            <div class="hero-buttons">
+                <a href="lab.html" class="hero-btn">🚀 Mulai Sekarang</a>
+                <a href="#features" class="hero-btn secondary">Pelajari Lebih Lanjut</a>
+            </div>
         </div>
         
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <p>🚀 Memuat Python Engine... Mohon tunggu sebentar</p>
+        <!-- Features Section -->
+        <div id="features" class="features-section">
+            <h2>🌟 Fitur Utama</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Laboratorium</h3>
+                    <p>Buat dan kelola proyek Python kamu sendiri. Eksperimen bebas tanpa batasan!</p>
+                    <a href="lab.html" class="feature-btn">Buka Lab</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Pelajaran</h3>
+                    <p>Ikuti perjalanan belajar terstruktur dari dasar sampai mahir dalam Python.</p>
+                    <a href="lessons.html" class="feature-btn">Mulai Belajar</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Achievement</h3>
+                    <p>Lacak kemajuan belajarmu dan raih penghargaan dari setiap pencapaian.</p>
+                    <a href="achievements.html" class="feature-btn">Lihat Prestasi</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Playground</h3>
+                    <p>Area kreatif untuk bereksperimen dengan kode Python tanpa batasan misi.</p>
+                    <a href="playground.html" class="feature-btn">Buka Playground</a>
+                </div>
+            </div>
         </div>
         
-        <div id="game-content" style="display: none;">
-            <div class="player-info">
-                <div>
-                    <h3>Pemain: <span id="player-name">Petualang Python</span></h3>
-                    <p>Level: <span id="current-level">1</span></p>
-                </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <p>XP: <span id="current-xp">0</span>/<span id="max-xp">100</span></p>
-                    <div class="xp-bar-container">
-                        <div class="xp-bar" id="xp-bar"></div>
-                        <div class="xp-text" id="xp-text">0/100 XP</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="avatar-container">
-                <div class="avatar" id="player-avatar">🧑‍💻</div>
-                <div class="coins-display">🪙 Koin: <span id="coin-count">0</span></div>
-            </div>
-            
-            <div class="badge-container" id="badges">
-                <!-- Badges akan ditambahkan dinamis -->
-            </div>
-            
-            <div class="story-section" id="story-section">
-                <div class="chapter-title" id="chapter-title">Awal Petualangan</div>
-                <div id="chapter-story">Kamu menemukan sebuah gua rahasia...</div>
-                <div class="npc-dialogue" id="npc-dialogue">
-                    <div class="npc-name" id="npc-name">Guru Sihir Python</div>
-                    <div id="npc-message">Selamat datang, muridku! Aku akan mengajarimu sihir Python yang kuat!</div>
-                </div>
-            </div>
-            
-            <div class="level-selector" id="level-selector">
-                <!-- Level buttons akan ditambahkan dinamis -->
-            </div>
-            
-            <div class="mission" id="mission">
-                <h3 id="mission-title">🎯 Misi: Kenalan dengan Variabel</h3>
-                <p id="mission-desc">Karakter kamu butuh nama supaya bisa dikenali. Gunakan variabel untuk menyimpan namanya!</p>
-                
-                <div id="examples" class="hint">
-                    <strong>Contoh:</strong><br>
-                    nama = "Budi"<br>
-                    print("Halo, " + nama)
-                </div>
-            </div>
-            
-            <div class="editor-container">
-                <div class="editor-toolbar">
-                    <button onclick="resetCode()" title="Reset ke contoh awal">🔄 Reset</button>
-                    <button onclick="showHint()" class="hint-btn" title="Dapatkan petunjuk" id="hint-btn">💡 Hint</button>
-                    <button onclick="exportCode()" title="Download kode sebagai .py">💾 Export</button>
-                    <button onclick="showQuiz()" title="Quiz setelah level">❓ Quiz</button>
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2>📊 Statistik Game</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Level Pembelajaran</div>
                 </div>
                 
-                <div class="editor-wrapper">
-                    <textarea id="code-editor" placeholder="Tulis kode Python di sini..." spellcheck="false">nama = "Budi"
-print("Halo, " + nama)</textarea>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Badge & Achievement</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Open Source</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Kreativitas</div>
                 </div>
             </div>
-            
-            <div class="button-group">
-                <button onclick="runCode()" id="run-btn">🚀 Jalankan Kode (Ctrl+Enter)</button>
-                <button class="special-btn" onclick="showChallenge()">⚔️ Tantangan Spesial</button>
-            </div>
-            
-            <div id="output">🎮 Output akan muncul di sini...</div>
-            
-            <div class="quiz-container" id="quiz-container">
-                <h3>❓ Quiz Cepat</h3>
-                <div id="quiz-content"></div>
-                <button onclick="submitQuiz()" style="margin-top: 15px;">Submit Jawaban</button>
-            </div>
-            
-            <!-- - Fitur Baru: Playground Mode (Saran #48) - -->
-            <div class="section-card">
-                <h3>🎮 Playground Mode</h3>
-                <p>Area bebas bereksperimen tanpa batasan misi. Tulis kode apa saja di sini!</p>
-                <div class="editor-container">
-                    <div class="editor-toolbar">
-                        <button onclick="runPlaygroundCode()" id="run-playground-btn">🚀 Jalankan Kode</button>
-                        <button onclick="resetPlaygroundCode()" title="Reset ke contoh awal">🔄 Reset</button>
-                    </div>
-                    <div class="editor-wrapper">
-                        <textarea id="playground-editor" placeholder="Tulis kode Python di sini..."># Kamu bisa menulis kode apa saja di sini.
-# Contoh: Membuat pola segitiga
-def buat_segitiga(tinggi):
-    for i in range(tinggi):
-        print(" " * (tinggi - i - 1) + "*" * (2 * i + 1))
-
-# Panggil fungsi
-buat_segitiga(5)
-
-# - Area Gambar ASCII -
-print("🖼️ Gambar ASCII Sederhana:")
-print(" *****")
-print(" *   *")
-print("* Python *")
-print(" *   *")
-print(" *****")</textarea>
-                    </div>
+        </div>
+        
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <h2>💬 Apa Kata Pengguna</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Game ini bikin belajar Python jadi menyenangkan! Saya jadi paham konsep dasar dengan cepat."</div>
+                    <div class="testimonial-author">- Budi, Siswa SMA</div>
                 </div>
-                <div id="playground-output">🎮 Output Playground akan muncul di sini...</div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"UI/UX-nya keren banget! Rasanya kayak main RPG tapi belajar coding. Sangat direkomendasikan!"</div>
+                    <div class="testimonial-author">- Ani, Mahasiswa Ilmu Komputer</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Fitur Playground-nya luar biasa! Bisa eksperimen bebas tanpa takut salah."</div>
+                    <div class="testimonial-author">- Candra, Developer Pemula</div>
+                </div>
             </div>
-            <!-- - Akhir Fitur Baru - -->
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>🚀 Siap Untuk Belajar Python?</h2>
+            <p>Mari mulai petualangan seru belajar Python dengan cara yang menyenangkan!</p>
+            <a href="lab.html" class="hero-btn">👉 Mulai Sekarang</a>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>🐍 Python Adventure Game &copy; 2025 | Belajar Python dengan Menyenangkan</p>
+        <p>Made with ❤️ for Indonesian Learners</p>
+        <p><a href="https://github.com/username-kamu/python-adventure-game" target="_blank" style="color: #FFD700;">GitHub Repository</a> | <a href="#update-log" onclick="showUpdateLog()" style="color: #FFD700;">Update Log</a></p>
+    </footer>
+
+    <!-- Update Log Modal -->
+    <div id="update-log-modal" class="logbook-modal" style="display: none;">
+        <div class="logbook-content">
+            <button class="logbook-close" onclick="document.getElementById('update-log-modal').style.display='none'">×</button>
+            <h2>📜 Update Log</h2>
+            <div id="update-log-content" style="text-align: left; max-height: 70vh; overflow-y: auto;">
+                <!-- Isi Update Log akan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Log Button -->
+    <button class="update-log-btn" title="Lihat Update Log" onclick="showUpdateLog()">📜</button>
+
     <!-- Pyodide -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Show Update Log
+        function showUpdateLog() {
+            const modal = document.getElementById('update-log-modal');
+            const contentDiv = document.getElementById('update-log-content');
+            
+            contentDiv.innerHTML = `
+<h3>v3.0.0 - 🎨 UI/UX Revolution Update</h3>
+<p><strong>Tanggal:</strong> 12 September 2025</p>
+<ul>
+<li><strong>🎨 NEW: Redesign UI/UX Home Page</strong>
+  <ul>
+    <li>Hero section yang lebih menarik dengan gradient border</li>
+    <li>Features grid dengan card design yang konsisten</li>
+    <li>Stats section untuk menampilkan statistik game</li>
+    <li>Testimonials section untuk feedback pengguna</li>
+    <li>CTA section yang lebih prominent</li>
+    <li>Footer yang lebih informatif</li>
+    <li>Responsive design yang lebih baik untuk mobile</li>
+  </ul>
+</li>
+<li><strong>🔧 FIXED: Update Log System</strong>
+  <ul>
+    <li>Menambahkan tombol "Update Log" di footer</li>
+    <li>Modal update log yang lebih rapi dan informatif</li>
+    <li>Struktur versi yang jelas (v3.0.0, v2.1.0, v2.0.0, v1.1.0, v1.0.0)</li>
+    <li>Perbedaan antara perubahan FIX dan improvisasi</li>
+  </ul>
+</li>
+<li><strong>📱 IMPROVED: Mobile Responsiveness</strong>
+  <ul>
+    <li>Hero buttons yang stack vertikal di mobile</li>
+    <li>Grid layout yang adaptif untuk semua ukuran layar</li>
+    <li>Font size yang lebih responsif</li>
+    <li>Padding dan margin yang lebih konsisten</li>
+  </ul>
+</li>
+<li><strong>✨ IMPROVED: Visual Consistency</strong>
+  <ul>
+    <li>Border dan shadow yang konsisten di semua card</li>
+    <li>Color scheme yang harmonis</li>
+    <li>Typography yang lebih jelas</li>
+    <li>Spacing yang lebih konsisten</li>
+  </ul>
+</li>
+</ul>
+
+<h3>v2.1.0 - 🎨 Playground & Auto-Indent Update</h3>
+<p><strong>Tanggal:</strong> 11 September 2025</p>
+<ul>
+<li><strong>🎮 NEW: 🎨 Playground (Saran #51)</strong>
+  <ul>
+    <li>Area khusus untuk bereksperimen bebas dengan kode Python</li>
+    <li>Tempat kreatif untuk mencoba ide atau membuat seni ASCII</li>
+    <li>Kode disimpan otomatis dan bisa disimpan secara manual</li>
+    <li>Toolbar: Jalankan, Simpan, Bersihkan Output, Reset</li>
+    <li>Shortcut: <code>Ctrl+Enter</code> untuk menjalankan kode</li>
+    <li>Akses: Klik tombol baru "🎨 Playground" di bawah editor kode utama</li>
+  </ul>
+</li>
+<li><strong>⌨️ NEW: Indentasi Otomatis (Saran #52)</strong>
+  <ul>
+    <li>Fitur yang secara otomatis menambahkan 4 spasi ketika mengetik <code>:</code> di akhir baris</li>
+    <li>Mempermudah penulisan kode Python yang membutuhkan indentasi (<code>if</code>, <code>for</code>, <code>def</code>, dll)</li>
+    <li>Terutama membantu pemain mobile di mana mengetik spasi banyak bisa sulit</li>
+    <li>Berlaku di editor kode utama dan editor Playground</li>
+  </ul>
+</li>
+<li><strong>🔧 FIXED: Error Script</strong>
+  <ul>
+    <li>Memperbaiki bug saat menjalankan script tertentu</li>
+    <li>Menangani error lebih baik agar tidak crash</li>
+  </ul>
+</li>
+</ul>
+
+<h3>v2.0.0 - 🎭 Ultimate RPG Update</h3>
+<p><strong>Tanggal:</strong> 10 September 2025</p>
+<ul>
+<li><strong>🎮 NEW: Avatar & Kosmetik System</strong></li>
+<li><strong>📖 NEW: Narrative Story System</strong></li>
+<li><strong>✨ NEW: Micro-Interactions & Animations</strong></li>
+<li><strong>📚 NEW: Jurnal Petualangan</strong></li>
+<li><strong>🎯 IMPROVED: Hint System</strong></li>
+<li><strong>🔄 IMPROVED: Reset Code</strong></li>
+<li><strong>🌙 IMPROVED: Dark Mode</strong></li>
+<li><strong>🎮 IMPROVED: UI/UX</strong></li>
+</ul>
+
+<h3>v1.1.0 - 🛡️ Exception Handling Update</h3>
+<p><strong>Tanggal:</strong> 9 September 2025</p>
+<ul>
+<li><strong>🆕 Tambah Level 11:</strong> Exception Handling (try/except)</li>
+<li><strong>✨ Perbaikan UI/UX:</strong> 
+  <ul>
+    <li>Dark mode toggle dengan animasi</li>
+    <li>Loading spinner yang keren</li>
+    <li>Toast notifications untuk feedback</li>
+  </ul>
+</li>
+<li><strong>🔧 Optimasi:</strong>
+  <ul>
+    <li>Keyboard shortcuts yang lebih responsif</li>
+    <li>Better error handling</li>
+    <li>Save dark mode preference</li>
+  </ul>
+</li>
+<li><strong>📱 Responsive:</strong> 
+  <ul>
+    <li>Tampilan mobile yang lebih baik</li>
+    <li>Touch-friendly buttons</li>
+  </ul>
+</li>
+</ul>
+
+<h3>v1.0.0 - 🎉 Initial Release</h3>
+<p><strong>Tanggal:</strong> 8 September 2025</p>
+<ul>
+<li><strong>🎮 10 Level Pembelajaran</strong> komplit</li>
+<li><strong>🏆 Sistem XP dan Badge</strong></li>
+<li><strong>❓ Quiz setelah setiap level</strong></li>
+<li><strong>💻 Editor kode dengan syntax highlighting</strong></li>
+<li><strong>🚀 Eksekusi Python real-time di browser</strong></li>
+<li><strong>💾 Auto-save progress</strong></li>
+<li><strong>📱 Responsive design</strong></li>
+</ul>
+`;
+            modal.style.display = 'flex';
+        }
+    </script>
 </body>
-</html>
+</html> 

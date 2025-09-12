@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Laboratorium Python - Python Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === LABORATORIUM STYLING === */
+        .lab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-card h3 {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+        
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+        
+        /* === LABORATORIUM EDITOR PERBAIKAN === */
+        .lab-editor-container {
+            display: flex;
+            flex-direction: column;
+            height: 70vh; /* Tinggi editor lebih besar */
+            margin: 1rem 0;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #2d2d2d; /* Abu-abu gelap yang enak */
+        }
+
+        .lab-editor-header {
+            background-color: #333;
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-bottom: 1px solid #444;
+        }
+
+        #lab-editor {
+            flex: 1;
+            width: 100%;
+            padding: 1.5rem; /* Padding lebih besar */
+            border: none;
+            background-color: #1e1e1e; /* Abu-abu sangat gelap */
+            color: #d4d4d4; /* Teks terang */
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 18px; /* Font lebih besar */
+            resize: none;
+            tab-size: 4;
+            outline: none;
+            line-height: 1.6; /* Line height lebih nyaman */
+        }
+
+        #lab-editor:focus {
+            outline: 1px solid #0078d4; /* Biru fokus */
+        }
+
+        .lab-output-container {
+            margin-top: 1rem;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #252525;
+        }
+
+        .lab-output-header {
+            background-color: #333;
+            color: #4CAF50; /* Hijau output */
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-bottom: 1px solid #444;
+        }
+
+        #lab-output {
+            padding: 1.5rem;
+            background-color: #1e1e1e;
+            color: #cccccc;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 16px;
+            white-space: pre-wrap;
+            overflow: auto;
+            min-height: 150px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">🐍</span>
+            <span class="brand-text">Python Adventure</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="lab.html" class="nav-link active">🧪 Laboratorium</a>
+            <a href="lessons.html" class="nav-link">📚 Pelajaran</a>
+            <a href="achievements.html" class="nav-link">🏆 Achievement</a>
+            <a href="playground.html" class="nav-link">🎮 Playground</a>
+        </div>
+    </nav>
+
+    <div class="game-container">
+        <div class="lab-header">
+            <h1>🧪 Laboratorium Python</h1>
+            <button id="new-project-btn" class="btn-primary">➕ Buat Proyek Baru</button>
+        </div>
+        
+        <div class="section-card">
+            <p>Di laboratorium ini, kamu bisa membuat dan mengelola proyek Python kamu sendiri. Setiap proyek disimpan secara lokal di browser kamu.</p>
+        </div>
+        
+        <div class="projects-grid" id="projects-container">
+            <!-- Projects akan ditampilkan di sini -->
+        </div>
+        
+        <!-- Laboratorium Editor & Output -->
+        <div class="lab-editor-container">
+            <div class="lab-editor-header">📝 Editor Kode Python</div>
+            <textarea id="lab-editor" spellcheck="false"># Tulis kode Python di sini...
+print("Halo dari Laboratorium!")
+print("Eksperimen bebas tanpa batasan!")
+
+# Contoh: Membuat pola segitiga
+def buat_segitiga(tinggi):
+    for i in range(tinggi):
+        print(" " * (tinggi - i - 1) + "*" * (2 * i + 1))
+
+# Panggil fungsi
+buat_segitiga(5)</textarea>
+        </div>
+
+        <div class="lab-output-container">
+            <div class="lab-output-header">📤 Output Program</div>
+            <div id="lab-output">🎮 Output akan muncul di sini setelah kamu menjalankan kode...</div>
+        </div>
+        
+        <div class="button-group" style="margin-top: 1rem; text-align: center;">
+            <button onclick="runLabCode()" class="btn-primary">🚀 Jalankan Kode</button>
+            <button onclick="saveLabCode()" class="btn-icon">💾 Simpan</button>
+            <button onclick="resetLabCode()" class="btn-icon">🔄 Reset</button>
+            <button onclick="clearLabOutput()" class="btn-icon">🧹 Bersihkan</button>
+        </div>
+    </div>
+
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="lab.js"></script>
+    <script>
+        // Initialize Lab
+        document.addEventListener('DOMContentLoaded', initLab);
+    </script>
+</body>
+</html>

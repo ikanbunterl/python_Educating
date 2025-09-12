@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Achievement - Python Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Achievements Page Specific Styles */
+        .achievements-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievement-card.earned {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: gold;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .achievement-card.earned::before {
+            content: "🏆";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .achievement-card:not(.earned) {
+            opacity: 0.6;
+        }
+        
+        .achievement-card:not(.earned)::before {
+            content: "🔒";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .achievement-card h3 {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .achievement-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+        
+        .achievement-card .xp-reward {
+            font-size: 0.9rem;
+            color: #4CAF50;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .achievement-card .unlock-condition {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+        
+        .recent-achievements {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .recent-achievements h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        
+        .recent-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .recent-item {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Animation for earned achievements */
+        .achievement-card.earned.correct-animation {
+            animation: correctPulse 0.5s ease;
+        }
+        
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 30px gold; }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">🐍</span>
+            <span class="brand-text">Python Adventure</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="lab.html" class="nav-link">🧪 Laboratorium</a>
+            <a href="lessons.html" class="nav-link">📚 Pelajaran</a>
+            <a href="achievements.html" class="nav-link active">🏆 Achievement</a>
+            <a href="playground.html" class="nav-link">🎮 Playground</a>
+        </div>
+    </nav>
+
+    <div class="game-container">
+        <div class="achievements-header">
+            <h1>🏆 Achievement</h1>
+            <button onclick="showAchievementStats()" class="btn-primary">📊 Statistik</button>
+        </div>
+        
+        <div class="section-card">
+            <p>Lacak semua pencapaian dan penghargaan yang sudah kamu raih dalam perjalanan belajar Python!</p>
+        </div>
+        
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-value" id="total-achievements">0</div>
+                <div class="stat-label">Achievement Terkumpul</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-xp">0</div>
+                <div class="stat-label">Total XP</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="total-coins">0</div>
+                <div class="stat-label">Koin Terkumpul</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="completion-rate">0%</div>
+                <div class="stat-label">Completion Rate</div>
+            </div>
+        </div>
+        
+        <div class="recent-achievements">
+            <h3>🎉 Achievement Terbaru</h3>
+            <div class="recent-list" id="recent-achievements">
+                <div class="recent-item">Belum ada achievement terbaru</div>
+            </div>
+        </div>
+        
+        <div class="achievements-grid" id="achievements-container">
+            <!-- Achievements akan ditampilkan di sini -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="achievements.js"></script>
+</body>
+</html>
