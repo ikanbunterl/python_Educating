@@ -1,18 +1,15 @@
-// lessons.js - Logika Pelajaran
+// lessons.js - Logika Pelajaran (v4.0.0)
 
-// Data Game State (disimpan di localStorage)
 let gameData = {
     currentLevel: 1,
     xp: 0,
     badges: [],
     completedLevels: [],
     coins: 0,
-    // Sistem unlock berdasarkan progress
-    unlockedLessons: [1], // Level 1 selalu terbuka
+    unlockedLessons: [1],
     playerName: "Petualang Python"
 };
 
-// Definisi Level Pembelajaran
 const lessons = {
     1: {
         title: "🎯 Misi: Kenalan dengan Variabel",
@@ -31,26 +28,27 @@ const lessons = {
     },
     2: {
         title: "🕵️‍♂️ Misi: Detektif Tipe Data",
-        desc: "Kamu adalah detektif yang harus mengidentifikasi tipe data dari berbagai nilai. Gunakan fungsi type() untuk mengecek tipe data!",
-        examples: "nama = \"Andi\"\numur = 13\nsiswa = True\nprint(type(nama))\nprint(type(umur))\nprint(type(siswa))",
-        story: "Setelah memahami variabel, kamu menemukan buku sihir tentang berbagai 'tipe data' yang bisa disimpan!",
-        badge: "🔍 Tipe Data Detective",
-        defaultCode: "nama = \"Andi\"\numur = 13\nsiswa = True\nprint(type(nama))\nprint(type(umur))\nprint(type(siswa))",
+        desc: "Kamu menemukan peti harta karun! Tapi kunci hanya bisa dibuka dengan tipe data yang tepat.",
+        examples: "umur = 15\ntinggi = 170.5\nnama = \"Andi\"\nprint(type(umur))\nprint(type(tinggi))\nprint(type(nama))",
+        story: "Di perpustakaan kuno, kamu belajar tentang 'tipe data' - jenis-jenis nilai yang bisa disimpan!",
+        badge: "🕵️ Tipe Data Detective",
+        defaultCode: "umur = 15\ntinggi = 170.5\nnama = \"Andi\"\nprint(type(umur))\nprint(type(tinggi))\nprint(type(nama))",
         xpReward: 25,
         coinReward: 15,
         hints: [
-            "String ditulis dengan tanda kutip",
-            "Integer adalah angka bulat tanpa kutip",
-            "Boolean hanya bisa True atau False"
+            "int untuk bilangan bulat",
+            "float untuk bilangan desimal",
+            "str untuk teks",
+            "Gunakan type() untuk memeriksa tipe data"
         ]
     },
     3: {
-        title: "💰 Misi: Kalkulator Petualangan",
-        desc: "Kamu sedang mengumpulkan koin dalam petualangan! Gunakan operasi matematika untuk menghitung total koinmu.",
-        examples: "koin_level1 = 25\nkoin_level2 = 30\nbonus = 10\n\ntotal = koin_level1 + koin_level2 + bonus\nprint(\"Total koin: \" + str(total))",
-        story: "Di hutan ajaib, kamu menemukan peti harta karun yang membutuhkan kemampuan matematika untuk dibuka!",
+        title: "🧮 Misi: Ahli Matematika",
+        desc: "Kamu harus menghitung total koin yang kamu kumpulkan dari berbagai sumber.",
+        examples: "koin_dari_misi = 20\nkoin_dari_quiz = 15\ntotal_koin = koin_dari_misi + koin_dari_quiz\nprint(\"Total koin: \" + str(total_koin))",
+        story: "Di menara penghitung, kamu belajar tentang operator matematika untuk menggabungkan dan menghitung nilai!",
         badge: "🧮 Math Wizard",
-        defaultCode: "koin_level1 = 25\nkoin_level2 = 30\nbonus = 10\n\ntotal = koin_level1 + koin_level2 + bonus\nprint(\"Total koin: \" + str(total))",
+        defaultCode: "koin_dari_misi = 20\nkoin_dari_quiz = 15\ntotal_koin = koin_dari_misi + koin_dari_quiz\nprint(\"Total koin: \" + str(total_koin))",
         xpReward: 30,
         coinReward: 20,
         hints: [
@@ -62,10 +60,10 @@ const lessons = {
     4: {
         title: "🧭 Misi: Membuat Keputusan",
         desc: "Kamu sedang di depan pintu rahasia! Gunakan kondisi untuk memutuskan jalan yang harus diambil.",
-        examples: "umur = 15\nkunci = True\n\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
+        examples: "umur = 15\nkunci = True\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
         story: "Kamu sampai di persimpangan jalan. Hanya dengan logika yang tepat kamu bisa memilih jalan yang benar!",
         badge: "⚖️ Logic Master",
-        defaultCode: "umur = 15\nkunci = True\n\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
+        defaultCode: "umur = 15\nkunci = True\nif umur >= 13 and kunci:\n    print(\"Boleh masuk ke ruang rahasia!\")\nelse:\n    print(\"Belum boleh masuk\")",
         xpReward: 35,
         coinReward: 25,
         hints: [
@@ -91,7 +89,7 @@ const lessons = {
     },
     6: {
         title: "⚙️ Misi: Membuat Blok Kode",
-        desc: "Kamu adalah penyihir yang bisa membuat mantra! Setiap mantra adalah fungsi yang bisa digunakan berulang kali.",
+        desc: "Kamu adalah penyihir yang bisa membuat mantra! Gunakan fungsi untuk membuat blok kode yang bisa digunakan berulang.",
         examples: "def sapa(nama):\n    print(\"Halo, \" + nama + \"! Selamat datang di petualangan!\")\n\nsapa(\"Andi\")\nsapa(\"Budi\")",
         story: "Kamu belajar membuat 'mantra' sihir yang bisa digunakan kapan saja - seperti fungsi dalam Python!",
         badge: "🔧 Function Wizard",
@@ -114,82 +112,141 @@ const lessons = {
         xpReward: 50,
         coinReward: 40,
         hints: [
-            "List ditulis dengan kurung siku []",
-            "Item diakses dengan index [0], [1], [2], dst",
+            "Gunakan kurung siku [] untuk membuat list",
+            "Akses item dengan indeks, misalnya list[0]",
             "Gunakan len() untuk menghitung jumlah item"
         ]
     },
     8: {
-        title: "📚 Misi: Kamus Sihir",
-        desc: "Buat kamus sihir untuk menyimpan informasi tentang mantra dan kekuatannya!",
-        examples: "mantra = {\"pelindung\": 50, \"serangan\": 80, \"penyembuhan\": 30}\nprint(\"Kekuatan mantra pelindung: \" + str(mantra[\"pelindung\"]))",
-        story: "Kamu menemukan buku sihir kuno yang berisi kamus mantra. Setiap mantra memiliki kekuatan berbeda!",
-        badge: "📚 Dictionary Wizard",
-        defaultCode: "mantra = {\"pelindung\": 50, \"serangan\": 80, \"penyembuhan\": 30}\nprint(\"Kekuatan mantra pelindung: \" + str(mantra[\"pelindung\"]))",
+        title: "📖 Misi: Kamus Sihir",
+        desc: "Kamu menemukan buku sihir kuno yang berisi kamus mantra. Setiap mantra memiliki kekuatan berbeda!",
+        examples: "kamus_sihir = {\"bola_api\": \"Menyerang musuh dengan bola api\", \"penyembuhan\": \"Mengembalikan HP\"}\nprint(kamus_sihir[\"bola_api\"])\nkamus_sihir[\"teleportasi\"] = \"Berpindah ke lokasi lain\"\nprint(kamus_sihir)",
+        story: "Di perpustakaan rahasia, kamu belajar tentang 'dictionary' - cara menyimpan pasangan kunci dan nilai!",
+        badge: "📖 Dictionary Sage",
+        defaultCode: "kamus_sihir = {\"bola_api\": \"Menyerang musuh dengan bola api\", \"penyembuhan\": \"Mengembalikan HP\"}\nprint(kamus_sihir[\"bola_api\"])\nkamus_sihir[\"teleportasi\"] = \"Berpindah ke lokasi lain\"\nprint(kamus_sihir)",
         xpReward: 55,
         coinReward: 45,
         hints: [
-            "Dictionary ditulis dengan kurung kurawal {}",
-            "Setiap item punya key dan value: {\"key\": \"value\"}",
-            "Akses nilai dengan nama key: dict[\"key\"]"
+            "Gunakan kurung kurawal {} untuk membuat dictionary",
+            "Akses nilai dengan kunci, misalnya dict[\"kunci\"]",
+            "Tambahkan pasangan baru dengan dict[\"kunci_baru\"] = \"nilai_baru\""
         ]
     },
     9: {
-        title: "💾 Misi: Menyimpan Catatan Petualangan",
-        desc: "Simpan catatan petualanganmu ke file agar tidak hilang!",
-        examples: "# Membuat dan menulis file\ncatatan = open(\"catatan.txt\", \"w\")\ncatatan.write(\"Hari 1: Menemukan gua rahasia\\n\")\ncatatan.write(\"Hari 2: Belajar variabel\\n\")\ncatatan.close()\n\n# Membaca file\ncatatan = open(\"catatan.txt\", \"r\")\nprint(catatan.read())\ncatatan.close()",
-        story: "Kamu ingin menyimpan semua catatan petualanganmu. Kamu belajar cara menyimpan data ke file!",
-        badge: "💾 File Handler",
-        defaultCode: "# Membuat dan menulis file\ncatatan = open(\"catatan.txt\", \"w\")\ncatatan.write(\"Hari 1: Menemukan gua rahasia\\n\")\ncatatan.write(\"Hari 2: Belajar variabel\\n\")\ncatatan.close()\n\n# Membaca file\ncatatan = open(\"catatan.txt\", \"r\")\nprint(catatan.read())\ncatatan.close()",
+        title: "💾 Misi: Menyimpan Catatan",
+        desc: "Kamu ingin menyimpan semua catatan petualanganmu. Kamu belajar cara menyimpan data ke file!",
+        examples: "# Menulis ke file\ndengan_catatan = open(\"catatan.txt\", \"w\")\ndengan_catatan.write(\"Hari ini aku belajar Python!\\n\")\ndengan_catatan.close()\n\n# Membaca file\ndengan_catatan = open(\"catatan.txt\", \"r\")\nisi = dengan_catatan.read()\nprint(isi)\ndengan_catatan.close()",
+        story: "Kamu belajar cara menyimpan dan memuat data dari file agar tidak hilang!",
+        badge: "💾 File Keeper",
+        defaultCode: "# Menulis ke file\ndengan_catatan = open(\"catatan.txt\", \"w\")\ndengan_catatan.write(\"Hari ini aku belajar Python!\\n\")\ndengan_catatan.close()\n\n# Membaca file\ndengan_catatan = open(\"catatan.txt\", \"r\")\nisi = dengan_catatan.read()\nprint(isi)\ndengan_catatan.close()",
         xpReward: 60,
         coinReward: 50,
         hints: [
-            "Gunakan open() untuk membuka file",
-            "\"w\" untuk menulis, \"r\" untuk membaca",
-            "Jangan lupa close() file setelah selesai"
+            "Gunakan open(\"nama_file\", \"mode\") untuk membuka file",
+            "\"w\" untuk menulis (overwrite), \"r\" untuk membaca",
+            "Jangan lupa untuk menutup file dengan close()"
         ]
     },
     10: {
-        title: "🧙 Misi: Membuat Karakter Petualang",
-        desc: "Buat karakter petualangmu sendiri dengan class dan object!",
-        examples: "class Petualang:\n    def __init__(self, nama, hp, kekuatan):\n        self.nama = nama\n        self.hp = hp\n        self.kekuatan = kekuatan\n    \n    def serang(self, musuh):\n        print(self.nama + \" menyerang \" + musuh + \"!\")\n\n# Membuat karakter\nbudi = Petualang(\"Budi\", 100, 25)\nbudi.serang(\"Goblin\")",
-        story: "Kamu belajar sihir tingkat tinggi - Object Oriented Programming! Sekarang kamu bisa membuat karakter dan kekuatan sendiri!",
-        badge: "🧙 OOP Master",
-        defaultCode: "class Petualang:\n    def __init__(self, nama, hp, kekuatan):\n        self.nama = nama\n        self.hp = hp\n        self.kekuatan = kekuatan\n    \n    def serang(self, musuh):\n        print(self.nama + \" menyerang \" + musuh + \"!\")\n\n# Membuat karakter\nbudi = Petualang(\"Budi\", 100, 25)\nbudi.serang(\"Goblin\")",
+        title: "🧙 Misi: Membuat Karakter (OOP Dasar)",
+        desc: "Kamu belajar sihir tingkat tinggi - Object Oriented Programming! Sekarang kamu bisa membuat karakter dan kekuatan sendiri!",
+        examples: "class Petualang:\n    def __init__(self, nama, hp):\n        self.nama = nama\n        self.hp = hp\n    \n    def serang(self):\n        print(self.nama + \" menyerang dengan kekuatan besar!\")\n\npemain = Petualang(\"Arya\", 100)\npemain.serang()",
+        story: "Kamu menguasai ilmu untuk menciptakan objek dan kelas - dasar dari pemrograman berorientasi objek!",
+        badge: "🧙 OOP Novice",
+        defaultCode: "class Petualang:\n    def __init__(self, nama, hp):\n        self.nama = nama\n        self.hp = hp\n    \n    def serang(self):\n        print(self.nama + \" menyerang dengan kekuatan besar!\")\n\npemain = Petualang(\"Arya\", 100)\npemain.serang()",
         xpReward: 65,
-        coinReward: 60,
+        coinReward: 55,
         hints: [
-            "Gunakan class untuk membuat blueprint",
-            "__init__ adalah constructor untuk inisialisasi",
-            "self merujuk pada object itu sendiri"
+            "Gunakan class untuk mendefinisikan blueprint objek",
+            "__init__ adalah fungsi khusus untuk inisialisasi",
+            "self merujuk pada instance objek itu sendiri"
         ]
     },
     11: {
-        title: "🛡️ Misi: Penjaga Gerbang",
-        desc: "Jadilah penjaga gerbang yang bijak! Gunakan try/except untuk menangani error saat ada input yang salah.",
-        examples: "try:\n    angka = int(input(\"Masukkan angka: \"))\n    hasil = 100 / angka\n    print(\"Hasil: \" + str(hasil))\nexcept ValueError:\n    print(\"Error: Input bukan angka!\")\nexcept ZeroDivisionError:\n    print(\"Error: Tidak bisa dibagi dengan nol!\")\nexcept Exception as e:\n    print(\"Error tidak terduga: \" + str(e))",
-        story: "Kamu diangkat menjadi penjaga gerbang kerajaan. Tugas kamu adalah memastikan hanya input yang valid yang bisa masuk!",
-        badge: "🛡️ Error Handler",
-        defaultCode: "# Contoh: Menangani error saat konversi tipe data\ntry:\n    # Coba kode yang berisiko error\n    angka = int(\"abc\")  # Ini akan error\n    print(\"Angka: \" + str(angka))\nexcept ValueError:\n    print(\"Error: Tidak bisa mengubah 'abc' menjadi angka!\")\n\n# Contoh: Menangani pembagian dengan nol\ntry:\n    hasil = 10 / 0\n    print(\"Hasil: \" + str(hasil))\nexcept ZeroDivisionError:\n    print(\"Error: Tidak bisa membagi dengan nol!\")",
+        title: "🛡️ Misi: Penjaga Gerbang (Exception Handling)",
+        desc: "Kamu diangkat menjadi penjaga gerbang kerajaan. Tugas kamu adalah memastikan hanya input yang valid yang bisa masuk!",
+        examples: "try:\n    umur = int(input(\"Masukkan umur kamu: \"))\n    if umur >= 13:\n        print(\"Boleh masuk!\")\n    else:\n        print(\"Belum boleh masuk\")\nexcept ValueError:\n    print(\"Input tidak valid! Harap masukkan angka.\")",
+        story: "Kamu belajar cara menangani kesalahan (error) dengan anggun agar program tidak berhenti mendadak!",
+        badge: "🛡️ Error Guardian",
+        defaultCode: "try:\n    umur = int(input(\"Masukkan umur kamu: \"))\n    if umur >= 13:\n        print(\"Boleh masuk!\")\n    else:\n        print(\"Belum boleh masuk\")\nexcept ValueError:\n    print(\"Input tidak valid! Harap masukkan angka.\")",
         xpReward: 70,
+        coinReward: 60,
+        hints: [
+            "Gunakan try untuk mencoba blok kode yang berisiko error",
+            "Gunakan except untuk menangkap dan menangani error tertentu",
+            "ValueError terjadi saat konversi tipe data gagal"
+        ]
+    },
+    12: {
+        title: "📊 Misi: Analis Data (Pandas Dasar)",
+        desc: "Kamu menjadi analis data kerajaan! Gunakan pandas untuk menganalisis data penjualan barang sihir.",
+        examples: "import pandas as pd\n\n# Membuat DataFrame\ndata = {\n    'Barang': ['Elixir', 'Mantra', 'Ramuan'],\n    'Penjualan': [120, 85, 150]\n}\ndf = pd.DataFrame(data)\nprint(df)\nprint(df['Penjualan'].sum()) # Total penjualan",
+        story: "Kamu belajar menggunakan library pandas untuk bekerja dengan data dalam bentuk tabel.",
+        badge: "📊 Data Analyst",
+        defaultCode: "import pandas as pd\n\n# Membuat DataFrame\ndata = {\n    'Barang': ['Elixir', 'Mantra', 'Ramuan'],\n    'Penjualan': [120, 85, 150]\n}\ndf = pd.DataFrame(data)\nprint(df)\nprint(df['Penjualan'].sum()) # Total penjualan",
+        xpReward: 75,
+        coinReward: 65,
+        hints: [
+            "Impor pandas dengan import pandas as pd",
+            "Gunakan pd.DataFrame(data) untuk membuat tabel data",
+            "Akses kolom dengan df['NamaKolom']"
+        ]
+    },
+    13: {
+        title: "📈 Misi: Visualisasi (Matplotlib Dasar)",
+        desc: "Buat grafik untuk menunjukkan perkembangan kekuatan sihir kamu!",
+        examples: "import matplotlib.pyplot as plt\n\nhari = [1, 2, 3, 4, 5]\nkekuatan = [10, 25, 40, 60, 85]\n\nplt.plot(hari, kekuatan)\nplt.title('Perkembangan Kekuatan Sihir')\nplt.xlabel('Hari')\nplt.ylabel('Kekuatan')\nplt.show()",
+        story: "Kamu belajar membuat grafik dan visualisasi data menggunakan matplotlib.",
+        badge: "📈 Visualization Expert",
+        defaultCode: "import matplotlib.pyplot as plt\n\nhari = [1, 2, 3, 4, 5]\nkekuatan = [10, 25, 40, 60, 85]\n\nplt.plot(hari, kekuatan)\nplt.title('Perkembangan Kekuatan Sihir')\nplt.xlabel('Hari')\nplt.ylabel('Kekuatan')\nplt.show()",
+        xpReward: 80,
         coinReward: 70,
         hints: [
-            "Gunakan try untuk kode yang berisiko error",
-            "Gunakan except untuk menangkap error spesifik",
-            "Gunakan Exception as e untuk error umum",
-            "finally selalu dijalankan, error atau tidak"
+            "Impor matplotlib.pyplot dengan import matplotlib.pyplot as plt",
+            "Gunakan plt.plot(x, y) untuk membuat grafik garis",
+            "Gunakan plt.show() untuk menampilkan grafik"
+        ]
+    },
+    14: {
+        title: "🌐 Misi: Permintaan Web (Requests Dasar)",
+        desc: "Kamu belajar cara mengambil data dari API cuaca sihir untuk merencanakan petualangan.",
+        examples: "import requests\n\n# Catatan: Ini hanya simulasi, karena kita tidak punya akses ke API sungguhan di sini.\n# Dalam dunia nyata, kamu akan menggunakan URL API yang sebenarnya.\n\n# Simulasi respons API\nrespons = \"{\\\"cuaca\\\": \\\"cerah\\\", \\\"suhu\\\": \\\"25C\\\"}\"\nprint(\"Data cuaca (simulasi):\", respons)\n\n# Jika ada API sungguhan:\n# url = \"https://api.cuaca-sihir.com/data\"\n# respons = requests.get(url)\n# data = respons.json()\n# print(data['cuaca'])",
+        story: "Kamu belajar berinteraksi dengan layanan web menggunakan library requests.",
+        badge: "🌐 Web Explorer",
+        defaultCode: "import requests\n\n# Catatan: Ini hanya simulasi, karena kita tidak punya akses ke API sungguhan di sini.\n# Dalam dunia nyata, kamu akan menggunakan URL API yang sebenarnya.\n\n# Simulasi respons API\nrespons = \"{\\\"cuaca\\\": \\\"cerah\\\", \\\"suhu\\\": \\\"25C\\\"}\"\nprint(\"Data cuaca (simulasi):\", respons)\n\n# Jika ada API sungguhan:\n# url = \"https://api.cuaca-sihir.com/data\"\n# respons = requests.get(url)\n# data = respons.json()\n# print(data['cuaca'])",
+        xpReward: 85,
+        coinReward: 75,
+        hints: [
+            "Impor requests dengan import requests",
+            "Gunakan requests.get(url) untuk mengambil data dari URL",
+            "Gunakan .json() pada objek respons untuk mengubahnya jadi dictionary"
+        ]
+    },
+    15: {
+        title: "🧮 Misi: Matematika Simbolik (SymPy Dasar)",
+        desc: "Selesaikan persamaan matematika simbolik seperti seorang penyihir matematika!",
+        examples: "import sympy as sp\n\n# Mendefinisikan simbol\nx = sp.Symbol('x')\n\n# Mendefinisikan persamaan\npersamaan = x**2 - 5*x + 6\n\n# Memecahkan persamaan\nsolusi = sp.solve(persamaan, x)\nprint(\"Solusi dari persamaan x^2 - 5x + 6 = 0 adalah:\", solusi)\n\n# Menyederhanakan ekspresi\nekspresi = (x**2 - 1) / (x - 1)\ndisederhanakan = sp.simplify(ekspresi)\nprint(\"(x^2 - 1) / (x - 1) disederhanakan menjadi:\", disederhanakan)",
+        story: "Kamu menguasai seni matematika simbolik dengan SymPy, memecahkan persamaan seperti ahli matematika.",
+        badge: "🧮 Symbolic Math Master",
+        defaultCode: "import sympy as sp\n\n# Mendefinisikan simbol\nx = sp.Symbol('x')\n\n# Mendefinisikan persamaan\npersamaan = x**2 - 5*x + 6\n\n# Memecahkan persamaan\nsolusi = sp.solve(persamaan, x)\nprint(\"Solusi dari persamaan x^2 - 5x + 6 = 0 adalah:\", solusi)\n\n# Menyederhanakan ekspresi\nekspresi = (x**2 - 1) / (x - 1)\ndisederhanakan = sp.simplify(ekspresi)\nprint(\"(x^2 - 1) / (x - 1) disederhanakan menjadi:\", disederhanakan)",
+        xpReward: 90,
+        coinReward: 80,
+        hints: [
+            "Impor sympy dengan import sympy as sp",
+            "Gunakan sp.Symbol('x') untuk membuat simbol",
+            "Gunakan sp.solve(persamaan, simbol) untuk memecahkan persamaan"
         ]
     }
 };
 
-// NPC Characters
 const npcs = {
     mentor: {
-        name: "Guru Sihir Python",
+        name: "Guru Python",
         role: "Mentor",
         dialogues: {
-            greeting: "Selamat datang, muridku! Aku akan mengajarimu sihir Python yang kuat!",
-            encouragement: "Hebat sekali! Teruslah belajar, kekuatan Python akan membantumu!",
+            greeting: "Selamat datang, muridku! Aku Guru Python, pendampingmu dalam perjalanan belajar ini!",
+            tip: "Jika bingung, coba pecahkan masalah menjadi langkah-langkah kecil. Aku yakin kamu bisa!",
+            celebration: "Luar biasa! Kamu telah menguasai sihir Python dengan baik!",
             warning: "Hati-hati! Error adalah bagian dari perjalanan belajar. Jangan menyerah!",
             farewell: "Sampai jumpa di petualangan berikutnya, muridku!"
         }
@@ -201,119 +258,130 @@ const npcs = {
             greeting: "Halo! Aku Kiko, teman setiamu dalam petualangan Python!",
             tip: "Psst... kalau bingung, coba gunakan tombol Hint! Aku selalu di sini membantumu!",
             celebration: "Wah, kamu hebat! Aku bangga padamu!",
-            concern: "Kamu terlihat bingung... butuh bantuan?"
+            concern: "Kamu terlihat bingung... butuh bantuan?",
+            farewell: "Jangan lupa berlatih setiap hari, ya!"
+        }
+    },
+    enemy: {
+        name: "Goblin Error",
+        role: "Musuh",
+        dialogues: {
+            challenge: "Hahaha! Aku Goblin Error! Aku akan mengacaukan kodemu!",
+            defeated: "Aaaargh! Kekuatan Python telah mengalahkanku!",
+            escape: "Kali ini aku kabur, tapi aku akan kembali!"
         }
     }
 };
 
-// Pyodide instance
 let pyodide = null;
 
-// Initialize Lessons
 async function initLessons() {
     try {
-        // Load Pyodide
+        console.log("Memulai inisialisasi pelajaran...");
+        
         pyodide = await loadPyodide({
-            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/"
         });
         
-        console.log("Pyodide loaded successfully");
+        console.log("Pyodide berhasil dimuat.");
         
-        // Load game data
         loadGameData();
-        
-        // Update UI
         updateProgressStats();
         loadLessons();
         
     } catch (error) {
         console.error("Error loading Pyodide:", error);
         document.getElementById('lessons-container').innerHTML = 
-            '<div class="empty-state"><p>❌ Error memuat Python Engine. Silakan refresh halaman.</p></div>';
+            '<div class="empty-state section-card"><p>❌ Error memuat Python Engine. Silakan refresh halaman.</p></div>';
     }
 }
 
-// Load Game Data from localStorage
 function loadGameData() {
-    const saved = localStorage.getItem('pythonAdventureLessons');
+    const saved = localStorage.getItem('pythonAdventure');
     if (saved) {
         try {
-            gameData = JSON.parse(saved);
+            const parsedData = JSON.parse(saved);
+            gameData = { ...gameData, ...parsedData };
+            console.log("Data permainan dimuat:", gameData);
         } catch (e) {
-            console.error("Error parsing game data:", e);
+            console.error("Error parsing game ", e);
         }
     }
-    
-    // Ensure unlockedLessons always includes level 1
-    if (!gameData.unlockedLessons.includes(1)) {
-        gameData.unlockedLessons = [1];
-    }
 }
 
-// Save Game Data to localStorage
 function saveGameData() {
-    localStorage.setItem('pythonAdventureLessons', JSON.stringify(gameData));
+    localStorage.setItem('pythonAdventure', JSON.stringify(gameData));
+    console.log("Data permainan disimpan.");
 }
 
-// Update Progress Statistics
 function updateProgressStats() {
     document.getElementById('completed-lessons').textContent = gameData.completedLevels.length;
     document.getElementById('total-xp').textContent = gameData.xp;
     document.getElementById('collected-coins').textContent = gameData.coins;
     document.getElementById('earned-badges').textContent = gameData.badges.length;
+    
+    console.log("Statistik progress diperbarui.");
 }
 
-// Show Progress Overview
 function showProgressOverview() {
     alert(`📊 Kemajuan Belajarmu:\n\n` +
-          `Level Selesai: ${gameData.completedLevels.length}/11\n` +
+          `Level Selesai: ${gameData.completedLevels.length}\n` +
           `Total XP: ${gameData.xp}\n` +
           `Koin Terkumpul: ${gameData.coins}\n` +
-          `Badge Diperoleh: ${gameData.badges.length}/11\n\n` +
-          `Level saat ini: ${gameData.currentLevel}`);
+          `Badge Diperoleh: ${gameData.badges.length}`);
 }
 
-// Load Lessons Grid
 function loadLessons() {
     const container = document.getElementById('lessons-container');
     container.innerHTML = '';
-    
-    for (let i = 1; i <= 11; i++) {
+
+    for (let i = 1; i <= 15; i++) {
         const lesson = lessons[i];
+        if (!lesson) {
+            console.warn(`Lesson ${i} tidak ditemukan.`);
+            continue;
+        }
+
         const isUnlocked = gameData.unlockedLessons.includes(i);
         const isCompleted = gameData.completedLevels.includes(i);
-        
+
         const lessonCard = document.createElement('div');
-        lessonCard.className = `lesson-card ${isUnlocked ? '' : 'locked'} ${isCompleted ? 'completed' : ''}`;
+        lessonCard.className = `card lesson-card ${isUnlocked ? '' : 'locked'} ${isCompleted ? 'completed' : ''}`;
         
         if (isUnlocked) {
             lessonCard.addEventListener('click', () => openLesson(i));
         }
-        
+
         lessonCard.innerHTML = `
             <h3>${lesson.title}</h3>
             <p>${lesson.desc}</p>
             <div class="xp"> XP: ${lesson.xpReward} | Koin: ${lesson.coinReward}</div>
             ${lesson.badge ? `<div class="badge">${lesson.badge}</div>` : ''}
-            ${isCompleted ? '<div style="color: #4CAF50; margin-top: 10px;">✅ Selesai</div>' : ''}
+            ${isCompleted ? '<div style="color: var(--color-primary); margin-top: 10px; font-weight: bold;">✅ Selesai</div>' : ''}
         `;
         
         container.appendChild(lessonCard);
     }
+    
+    console.log("Daftar pelajaran dimuat.");
 }
 
-// Open Lesson in Modal
 function openLesson(lessonNum) {
     const lesson = lessons[lessonNum];
-    if (!lesson) return;
-    
+    if (!lesson) {
+        console.error(`Lesson ${lessonNum} tidak ditemukan.`);
+        return;
+    }
+
+    const npc = npcs.mentor;
+
     const modal = document.createElement('div');
     modal.className = 'lesson-modal';
     modal.innerHTML = `
         <div class="lesson-content">
+            <button class="lesson-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
             <div class="lesson-header">
                 <h2>📚 ${lesson.title}</h2>
-                <button class="lesson-close" onclick="this.parentElement.parentElement.parentElement.remove()">×</button>
             </div>
             <div class="lesson-main">
                 <div class="lesson-info-section">
@@ -326,25 +394,27 @@ function openLesson(lessonNum) {
                     <p>${lesson.desc}</p>
                     
                     <div class="lesson-section-title">💡 Contoh Kode</div>
-                    <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; overflow: auto;">${lesson.examples}</pre>
+                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 10px; overflow: auto; border: 1px solid var(--color-border);"><code>${lesson.examples}</code></pre>
                     
-                    <div class="lesson-section-title">_NPC Dialog_</div>
+                    <div class="lesson-section-title">🧙 NPC</div>
                     <div class="npc-dialogue">
-                        <div class="npc-name">${npcs.mentor.name}</div>
-                        <div id="npc-message">${npcs.mentor.dialogues.greeting}</div>
+                        <div class="npc-name">${npc.name}</div>
+                        <div id="npc-message">${npc.dialogues.greeting}</div>
                     </div>
                 </div>
                 
                 <div class="lesson-editor-section">
                     <div class="lesson-section-title">📝 Editor Kode</div>
                     <textarea id="lesson-editor" spellcheck="false">${lesson.defaultCode}</textarea>
+                    
                     <div class="lesson-section-title">📤 Output</div>
                     <div id="lesson-output">🎮 Output akan muncul di sini...</div>
+                    
                     <div class="lesson-toolbar">
-                        <button onclick="runLessonCode(${lessonNum})" id="run-lesson-btn">🚀 Jalankan (Ctrl+Enter)</button>
-                        <button onclick="showLessonHint(${lessonNum})">💡 Hint</button>
-                        <button onclick="resetLessonCode(${lessonNum})">🔄 Reset</button>
-                        <button onclick="completeLesson(${lessonNum})" id="complete-btn" style="display: none;">✅ Selesaikan Level</button>
+                        <button onclick="runLessonCode(${lessonNum})" id="run-lesson-btn" class="btn-primary">🚀 Jalankan (Ctrl+Enter)</button>
+                        <button onclick="showLessonHint(${lessonNum})" class="btn-secondary">💡 Hint</button>
+                        <button onclick="resetLessonCode(${lessonNum})" class="btn-small">🔄 Reset</button>
+                        <button onclick="completeLesson(${lessonNum})" id="complete-btn" style="display: none;" class="btn-primary">✅ Selesaikan Level</button>
                     </div>
                 </div>
             </div>
@@ -353,7 +423,6 @@ function openLesson(lessonNum) {
     
     document.body.appendChild(modal);
     
-    // Setup keyboard shortcuts
     modal.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.key === 'Enter') {
             e.preventDefault();
@@ -361,25 +430,32 @@ function openLesson(lessonNum) {
         }
     });
     
-    // Focus to editor
     setTimeout(() => {
         document.getElementById('lesson-editor').focus();
     }, 100);
+    
+    console.log(`Lesson ${lessonNum} dibuka di modal.`);
 }
 
-// Run Lesson Code
 async function runLessonCode(lessonNum) {
+    if (!pyodide) {
+        console.warn("Pyodide belum dimuat.");
+        await initLessons();
+        if (!pyodide) return;
+    }
+
     const code = document.getElementById("lesson-editor").value;
     const output = document.getElementById("lesson-output");
     const runBtn = document.getElementById("run-lesson-btn");
     
+    console.log("Menjalankan kode pelajaran...");
+    
     runBtn.disabled = true;
     runBtn.textContent = "⏳ Menjalankan...";
     output.innerHTML = "🎮 Menjalankan kode...";
-    output.className = ""; // Reset error class
-    
+    output.className = "";
+
     try {
-        // Override print function to capture output
         pyodide.runPython(`
 import sys
 from js import console
@@ -398,10 +474,8 @@ class OutputCapture:
 sys.stdout = OutputCapture()
         `);
         
-        // Run the user code
-        pyodide.runPython(code);
+        await pyodide.runPythonAsync(code);
         
-        // Get the captured output
         const capturedOutput = pyodide.globals.get('sys').stdout.buffer;
         
         if (capturedOutput && capturedOutput.length > 0) {
@@ -410,10 +484,10 @@ sys.stdout = OutputCapture()
             output.innerHTML = "ℹ️ Kode dijalankan tanpa output";
         }
         
-        // Show completion button
-        document.getElementById('complete-btn').style.display = 'inline-block';
+        console.log("Kode pelajaran berhasil dijalankan.");
         
     } catch (error) {
+        console.error("Error saat menjalankan kode pelajaran:", error);
         output.innerHTML = "❌ Error:\n" + error.message;
         output.className = "error-output";
     } finally {
@@ -422,70 +496,77 @@ sys.stdout = OutputCapture()
     }
 }
 
-// Show Lesson Hint
 function showLessonHint(lessonNum) {
     const lesson = lessons[lessonNum];
     if (lesson && lesson.hints) {
         const randomHint = lesson.hints[Math.floor(Math.random() * lesson.hints.length)];
         alert("💡 Petunjuk:\n" + randomHint);
+        console.log(`Hint untuk lesson ${lessonNum} ditampilkan.`);
     }
 }
 
-// Reset Lesson Code
 function resetLessonCode(lessonNum) {
     const lesson = lessons[lessonNum];
     if (lesson) {
         document.getElementById('lesson-editor').value = lesson.defaultCode;
         document.getElementById('lesson-output').innerHTML = "🎮 Output akan muncul di sini...";
         document.getElementById('complete-btn').style.display = 'none';
+        console.log(`Kode lesson ${lessonNum} direset.`);
     }
 }
 
-// Complete Lesson
 function completeLesson(lessonNum) {
     const lesson = lessons[lessonNum];
-    if (!lesson) return;
-    
-    // Give rewards
+    if (!lesson) {
+        console.error(`Lesson ${lessonNum} tidak ditemukan saat menyelesaikan.`);
+        return;
+    }
+
     gameData.xp += lesson.xpReward;
     gameData.coins += lesson.coinReward;
-    
-    // Add badge if available
+
     if (lesson.badge && !gameData.badges.includes(lesson.badge)) {
         gameData.badges.push(lesson.badge);
+        console.log(`Badge "${lesson.badge}" diperoleh.`);
     }
-    
-    // Mark as completed
+
     if (!gameData.completedLevels.includes(lessonNum)) {
         gameData.completedLevels.push(lessonNum);
+        console.log(`Lesson ${lessonNum} ditandai sebagai selesai.`);
     }
-    
-    // Unlock next lesson
+
     const nextLesson = lessonNum + 1;
-    if (nextLesson <= 11 && !gameData.unlockedLessons.includes(nextLesson)) {
+    if (nextLesson <= 15 && !gameData.unlockedLessons.includes(nextLesson)) {
         gameData.unlockedLessons.push(nextLesson);
+        console.log(`Lesson ${nextLesson} dibuka.`);
     }
-    
-    // Update current level
+
     if (lessonNum > gameData.currentLevel) {
         gameData.currentLevel = lessonNum;
+        console.log(`Level saat ini diperbarui menjadi ${lessonNum}.`);
     }
-    
-    // Save and update UI
+
     saveGameData();
     updateProgressStats();
     loadLessons();
-    
-    // Close modal
+
     document.querySelector('.lesson-modal')?.remove();
     
-    // Show completion message
-    alert(`🎉 Selamat! Kamu telah menyelesaikan ${lesson.title}\n\n` +
-          `🏆 XP: +${lesson.xpReward}\n` +
-          `🪙 Koin: +${lesson.coinReward}\n` +
-          `${lesson.badge ? `🏅 Badge: ${lesson.badge}\n` : ''}` +
-          `Level berikutnya (${nextLesson}) telah terbuka!`);
+    const message = `🎉 Selamat! Kamu telah menyelesaikan ${lesson.title}\n\n` +
+                    `🏆 XP: +${lesson.xpReward}\n` +
+                    `🪙 Koin: +${lesson.coinReward}\n` +
+                    `${lesson.badge ? `🏅 Badge: ${lesson.badge}\n` : ''}` +
+                    `Level berikutnya (${nextLesson}) telah terbuka!`;
+    alert(message);
+    
+    console.log(`Lesson ${lessonNum} diselesaikan.`);
 }
 
-// Initialize on load
 document.addEventListener('DOMContentLoaded', initLessons);
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modals = document.querySelectorAll('.lesson-modal');
+        modals.forEach(modal => modal.remove());
+    }
+});
